@@ -3,6 +3,7 @@
 import Link from "@/components/link";
 import { Button } from "@/components/ui/button";
 import GeneralInfoForm from "../forms/GeneralInfoForm";
+import PersonalInfoForm from "../forms/PersonalInfoForm";
 
 const ResumeEditor = () => {
   return (
