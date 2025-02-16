@@ -1,4 +1,4 @@
-import Navbar from "./resumes/Navbar";
+import Navbar from "./Navbar";
 
 const Layout = ({
   children,

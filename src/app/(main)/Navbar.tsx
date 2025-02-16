@@ -1,7 +1,8 @@
 import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
-import { UserButton } from "@clerk/nextjs";
+import UserButton from "./_components/UserButton";
+
 
 const Navbar = () => {
   return (
@@ -19,14 +20,7 @@ const Navbar = () => {
             AI Resume Builder
           </span>
         </Link>
-        <UserButton appearance={{
-          elements:{
-            avatarBox:{
-              width:35,
-              height:35,
-            }
-          }
-        }} />
+        <UserButton/>
       </div>
     </header>
   );
