@@ -2,6 +2,8 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 import Link from "next/link";
 import UserButton from "./_components/UserButton";
+import ThemeToggle from "@/components/ThemeToggle";
+
 
 
 const Navbar = () => {
@@ -20,7 +22,10 @@ const Navbar = () => {
             AI Resume Builder
           </span>
         </Link>
-        <UserButton/>
+        <div className="flex items-center gap-3">
+          <ThemeToggle/>
+          <UserButton/>
+        </div>
       </div>
     </header>
   );
