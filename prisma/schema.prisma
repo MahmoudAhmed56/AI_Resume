@@ -43,7 +43,7 @@ model WorkExperience {
   position    String?
   company     String?
   startDate   DateTime?
-  enddate     DateTime?
+  endDate     DateTime?
   description String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
