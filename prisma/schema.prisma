@@ -35,6 +35,7 @@ model Resume {
 
   workExperiences WorkExperience[]
   educations      Education[]
+  skills          String[]
 
   @@map("resumes")
 }
