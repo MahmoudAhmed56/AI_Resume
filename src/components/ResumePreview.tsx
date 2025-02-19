@@ -60,15 +60,15 @@ function PersonalInfoHeader({resumeData}:ResumeSectionProps) {
         className="aspect-square object-cover"
         />
       )}
-      <div className="space-y-2.5">
+      <div className={cn(`space-y-2.5`,!photoSrc ? "mx-auto": "")}>
       <div className="space-y-1">
           <p
-            className="text-3xl font-bold"
+            className={cn("text-3xl font-bold",!photoSrc ? "flex justify-center": "")}
           >
             {firstName} {lastName}
           </p>
           <p
-            className="font-medium"
+            className={cn("font-medium",!photoSrc ? "flex justify-center": "")}
           >
             {jobTitle}
           </p>
