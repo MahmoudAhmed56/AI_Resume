@@ -44,7 +44,7 @@ interface ResumeSectionProps {
   resumeData: ResumeValues;
 }
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
-  const { phone, firstName, lastName, jobTitle, city, country, photo, email } =
+  const { phone, firstName, lastName, jobTitle, city, country, photo, email,colorHex,borderStyle } =
     resumeData;
   const [photoSrc, setPhotoSrc] = useState(photo instanceof File ? "" : photo);
   useEffect(() => {
@@ -74,6 +74,9 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
               "text-3xl font-bold",
               !photoSrc ? "flex justify-center" : "",
             )}
+            style={{
+              color: colorHex,
+            }}
           >
             {firstName} {lastName}
           </p>
