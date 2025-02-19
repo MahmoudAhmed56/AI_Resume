@@ -27,6 +27,7 @@ const ResumePreview = ({ resumeData, className }: ResumePreviewProps) => {
         }}
       >
         <PersonalInfoHeader resumeData={resumeData} />
+        <SummarySection resumeData={resumeData} />
       </div>
     </div>
   );
@@ -37,50 +38,75 @@ export default ResumePreview;
 interface ResumeSectionProps {
   resumeData: ResumeValues;
 }
-function PersonalInfoHeader({resumeData}:ResumeSectionProps) {
-  const {phone,firstName,lastName,jobTitle,city,country,photo,email} = resumeData;
-  const [photoSrc,setPhotoSrc] = useState(photo instanceof File ? "": photo)
+function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
+  const { phone, firstName, lastName, jobTitle, city, country, photo, email } =
+    resumeData;
+  const [photoSrc, setPhotoSrc] = useState(photo instanceof File ? "" : photo);
   useEffect(() => {
-    const objectUrl = photo instanceof File ? URL.createObjectURL(photo) : ""
-    if(objectUrl) setPhotoSrc(objectUrl)
-    if(photo === null) setPhotoSrc("")
-  
+    const objectUrl = photo instanceof File ? URL.createObjectURL(photo) : "";
+    if (objectUrl) setPhotoSrc(objectUrl);
+    if (photo === null) setPhotoSrc("");
+
     return () => {
-      URL.revokeObjectURL(objectUrl)
-    }
-  }, [photo])
-  return(
+      URL.revokeObjectURL(objectUrl);
+    };
+  }, [photo]);
+  return (
     <div className="flex items-center gap-6">
       {photoSrc && (
-        <Image 
-        src={photoSrc}
-        width={100}
-        height={100}
-        alt="author photo"
-        className="aspect-square object-cover"
+        <Image
+          src={photoSrc}
+          width={100}
+          height={100}
+          alt="author photo"
+          className="aspect-square object-cover"
         />
       )}
-      <div className={cn(`space-y-2.5`,!photoSrc ? "mx-auto": "")}>
-      <div className="space-y-1">
+      <div className={cn(`space-y-2.5`, !photoSrc ? "mx-auto" : "")}>
+        <div className="space-y-1">
           <p
-            className={cn("text-3xl font-bold",!photoSrc ? "flex justify-center": "")}
+            className={cn(
+              "text-3xl font-bold",
+              !photoSrc ? "flex justify-center" : "",
+            )}
           >
             {firstName} {lastName}
           </p>
           <p
-            className={cn("font-medium",!photoSrc ? "flex justify-center": "")}
+            className={cn(
+              "font-medium",
+              !photoSrc ? "flex justify-center" : "",
+            )}
           >
             {jobTitle}
           </p>
         </div>
         <p className="text-xs text-gray-500">
           {country}
-          {country && city ? ", ": ""}
+          {country && city ? ", " : ""}
           {city}
-          {(city||country) && (phone || email) ? " • " : ""}
-          {[phone,email].filter(Boolean).join(" • ")}
+          {(city || country) && (phone || email) ? " • " : ""}
+          {[phone, email].filter(Boolean).join(" • ")}
         </p>
       </div>
     </div>
-  )
+  );
+}
+
+function SummarySection({ resumeData }: ResumeSectionProps) {
+  const { summary } = resumeData;
+  if (!summary) return null;
+  return (
+    <>
+      <hr className="border-2" />
+      <div className="break-inside-avoid space-y-3">
+        <p
+          className="text-lg font-semibold"
+        >
+          Summary
+        </p>
+        <div className="whitespace-pre-line text-sm">{summary}</div>
+      </div>
+    </>
+  );
 }
