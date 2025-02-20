@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -10,10 +11,10 @@ import { Input } from "@/components/ui/input";
 import { EditorFormProps } from "@/lib/types";
 import { PersonalInfoValues, personalInfoSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 
-const PersonalInfoForm = ({resumeData,setResumeData}:EditorFormProps) => {
+const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   const form = useForm<PersonalInfoValues>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -30,11 +31,12 @@ const PersonalInfoForm = ({resumeData,setResumeData}:EditorFormProps) => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
       if (!isValid) return;
-      setResumeData({...resumeData,...values})
+      setResumeData({ ...resumeData, ...values });
     });
     return unsubscribe;
-  }, [form,resumeData,setResumeData]);
+  }, [form, resumeData, setResumeData]);
 
+  const photoInputRef = useRef<HTMLInputElement>(null);
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
@@ -50,17 +52,28 @@ const PersonalInfoForm = ({resumeData,setResumeData}:EditorFormProps) => {
               return (
                 <FormItem>
                   <FormLabel>Your photo</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...fieldValues}
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        fieldValues.onChange(file);
-                      }}
-                    />
-                  </FormControl>
+                  <div className="flex items-center gap-2">
+                    <FormControl>
+                      <Input
+                        {...fieldValues}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          fieldValues.onChange(file);
+                        }}
+                        ref={photoInputRef}
+                      />
+                    </FormControl>
+                    <Button variant="secondary" type="button" onClick={()=>{
+                      fieldValues.onChange(null)
+                      if(photoInputRef.current){
+                        photoInputRef.current.value = ""
+                      }
+                    }}>
+                      Remove
+                    </Button>
+                  </div>
                   <FormMessage />
                 </FormItem>
               );
@@ -68,113 +81,99 @@ const PersonalInfoForm = ({resumeData,setResumeData}:EditorFormProps) => {
           />
           <div className="grid grid-cols-2 gap-3">
             <FormField
-            control={form.control}
-            name="firstName"
-            render={({field})=>(
-              <FormItem>
-                <FormLabel>
-                  First name
-                </FormLabel>
-                <FormControl>
-                  <Input {...field}/>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <FormField
-            control={form.control}
-            name="lastName"
-            render={({field})=>(
-              <FormItem>
-                <FormLabel>
-                  Last name
-                </FormLabel>
-                <FormControl>
-                  <Input {...field}/>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
           <FormField
             control={form.control}
             name="jobTitle"
-            render={({field})=>(
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  Job title
-                </FormLabel>
+                <FormLabel>Job title</FormLabel>
                 <FormControl>
-                  <Input {...field}/>
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-            />
-            <div className="grid grid-cols-2 gap-3">
+          />
+          <div className="grid grid-cols-2 gap-3">
             <FormField
-            control={form.control}
-            name="city"
-            render={({field})=>(
-              <FormItem>
-                <FormLabel>
-                  City
-                </FormLabel>
-                <FormControl>
-                  <Input {...field}/>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>City</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <FormField
-            control={form.control}
-            name="country"
-            render={({field})=>(
-              <FormItem>
-                <FormLabel>
-                Country
-                </FormLabel>
-                <FormControl>
-                  <Input {...field}/>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Country</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
           <FormField
             control={form.control}
             name="phone"
-            render={({field})=>(
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                Phone
-                </FormLabel>
+                <FormLabel>Phone</FormLabel>
                 <FormControl>
-                  <Input {...field} type="tel"/>
+                  <Input {...field} type="tel" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-            />
+          />
           <FormField
             control={form.control}
             name="email"
-            render={({field})=>(
+            render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                Email
-                </FormLabel>
+                <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input {...field} type="email"/>
+                  <Input {...field} type="email" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
-            />
+          />
         </form>
       </Form>
     </div>
