@@ -58,7 +58,7 @@ model WorkExperience {
 
 model Education {
   id        String    @id @default(cuid())
-  drgree    String?
+  degree    String?
   school    String?
   startDate DateTime?
   endDate   DateTime?
