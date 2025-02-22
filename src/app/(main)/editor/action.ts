@@ -8,7 +8,6 @@ import path from "path";
 
 const saveResume = async (values: ResumeValues) => {
   const { id } = values;
-  console.log("received values", values);
   const { photo, workExperiences, educations, ...resumeValues } =
     resumeSchema.parse(values);
   const { userId } = await auth();

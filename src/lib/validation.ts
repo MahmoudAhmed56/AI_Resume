@@ -27,13 +27,7 @@ export const personalInfoSchema = z.object({
   city: optionalString,
   country: optionalString,
   phone: optionalString,
-  email: z
-    .string()
-    .trim()
-    .email({
-      message: "Enter valid email",
-    })
-    .or(z.literal("")),
+  email: optionalString,
 });
 
 export type PersonalInfoValues = z.infer<typeof personalInfoSchema>;
