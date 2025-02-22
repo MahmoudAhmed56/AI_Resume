@@ -1,7 +1,9 @@
 "use client";
 
+import ResumePreview from "@/components/ResumePreview";
 import Link from "@/components/link";
 import { ResumeServerData } from "@/lib/types";
+import { mapToResumeValues } from "@/lib/utils";
 import { formatDate } from "date-fns";
 
 interface ResumeItemProps {
@@ -24,8 +26,19 @@ const ResumeItem = ({ resume }: ResumeItemProps) => {
             <p className="line-clamp-2 text-sm">{resume.description}</p>
           )}
           <p className="text-xs text-muted-foreground">
-            {wasUpdated ? "Updated" : "Created"} on {" "} {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
+            {wasUpdated ? "Updated" : "Created"} on{" "}
+            {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
+        </Link>
+        <Link
+          href={`editor?resumeId=${resume.id}`}
+          className="relative inline-block w-full"
+        >
+          <ResumePreview
+            resumeData={mapToResumeValues(resume)}
+            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>
     </div>
