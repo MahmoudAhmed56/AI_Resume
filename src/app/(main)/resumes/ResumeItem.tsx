@@ -3,13 +3,28 @@
 import ResumePreview from "@/components/ResumePreview";
 import Link from "@/components/link";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { useToast } from "@/hooks/use-toast";
 import { ResumeServerData } from "@/lib/types";
 import { mapToResumeValues } from "@/lib/utils";
 import { formatDate } from "date-fns";
 import { MoreVertical, Printer, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useTransition } from "react";
+import { deleteResume } from "./actions";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import LoadingButton from "@/components/LoadingButton";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
@@ -46,33 +61,33 @@ const ResumeItem = ({ resume }: ResumeItemProps) => {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>
-      <MoreMenu resumeId={resume.id} />
+      <MoreMenu resumeId={resume.id}  />
     </div>
   );
 };
 
 export default ResumeItem;
 
-
-interface MoreMenuProps{
-  resumeId:string
+interface MoreMenuProps {
+  resumeId: string;
 }
 
-function MoreMenu({resumeId}:MoreMenuProps) {
-  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState<boolean>(false)
-  return(
+function MoreMenu({ resumeId }: MoreMenuProps) {
+  const [showDeleteConfirmation, setShowDeleteConfirmation] =
+    useState<boolean>(false);
+  return (
     <>
-     <DropdownMenu>
-     <DropdownMenuTrigger asChild>
-     <Button
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
             variant="ghost"
             size="icon"
             className="absolute right-0.5 top-0.5 opacity-0 transition-opacity group-hover:opacity-100"
           >
             <MoreVertical className="size-4" />
           </Button>
-     </DropdownMenuTrigger>
-     <DropdownMenuContent>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
           <DropdownMenuItem
             className="flex items-center gap-2"
             onClick={() => setShowDeleteConfirmation(true)}
@@ -80,15 +95,63 @@ function MoreMenu({resumeId}:MoreMenuProps) {
             <Trash2 className="size-4" />
             Delete
           </DropdownMenuItem>
-          <DropdownMenuItem
-            className="flex items-center gap-2"
-            onClick={onPrintClick}
-          >
-            <Printer className="size-4" />
-            Print
-          </DropdownMenuItem>
         </DropdownMenuContent>
-     </DropdownMenu>
+      </DropdownMenu>
+      <DeleteConfirmationDialog resumeId={resumeId} open={showDeleteConfirmation} onOpenChange={setShowDeleteConfirmation} />
     </>
-  )
+  );
+}
+
+interface DeleteConfirmationDialogProps {
+  resumeId: string;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}
+
+function DeleteConfirmationDialog({
+  resumeId,
+  open,
+  onOpenChange,
+}: DeleteConfirmationDialogProps) {
+  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition();
+  async function handleDelete() {
+    startTransition(async () => {
+      try {
+        await deleteResume(resumeId);
+        onOpenChange(false);
+      } catch (error) {
+        console.log(error);
+        toast({
+          variant: "destructive",
+          description: "Something went wrong. Please try again.",
+        });
+      }
+    });
+  }
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Delete resume?</DialogTitle>
+          <DialogDescription>
+            This will permanently delete this resume. This action cannot be
+            undone.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <LoadingButton
+            variant="destructive"
+            onClick={handleDelete}
+            loading={isPending}
+          >
+            Delete
+          </LoadingButton>
+          <Button variant="secondary" onClick={() => onOpenChange(false)}>
+            Cancel
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
 }
