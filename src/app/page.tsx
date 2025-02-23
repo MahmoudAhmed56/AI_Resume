@@ -1,6 +1,9 @@
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main>front pager</main>
+    <main>
+      <Link href={"/resumes"}>resumes</Link>
+    </main>
   );
 }

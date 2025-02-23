@@ -10,9 +10,14 @@ import { BorderStyles } from "@/app/(main)/editor/BorderStyleButton";
 interface ResumePreviewProps {
   resumeData: ResumeValues;
   className?: string;
+  contentRef?: React.Ref<HTMLDivElement>;
 }
 
-const ResumePreview = ({ resumeData, className }: ResumePreviewProps) => {
+const ResumePreview = ({
+  resumeData,
+  className,
+  contentRef,
+}: ResumePreviewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { width } = useDimensions(containerRef);
   return (
@@ -28,6 +33,8 @@ const ResumePreview = ({ resumeData, className }: ResumePreviewProps) => {
         style={{
           zoom: (1 / 794) * width,
         }}
+        ref={contentRef}
+        id="resumePreviewContent"
       >
         <PersonalInfoHeader resumeData={resumeData} />
         <SummarySection resumeData={resumeData} />
@@ -247,7 +254,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
 }
 
 function SkillsSections({ resumeData }: ResumeSectionProps) {
-  const { skills, colorHex,borderStyle } = resumeData;
+  const { skills, colorHex, borderStyle } = resumeData;
   if (!skills?.length) return null;
   return (
     <>
@@ -274,11 +281,11 @@ function SkillsSections({ resumeData }: ResumeSectionProps) {
               style={{
                 backgroundColor: colorHex,
                 borderRadius:
-                borderStyle === BorderStyles.SQUARE
-                  ? "0px"
-                  : borderStyle === BorderStyles.CIRCLE
-                    ? "999px"
-                    : "8px",
+                  borderStyle === BorderStyles.SQUARE
+                    ? "0px"
+                    : borderStyle === BorderStyles.CIRCLE
+                      ? "999px"
+                      : "8px",
               }}
             >
               {skill}
