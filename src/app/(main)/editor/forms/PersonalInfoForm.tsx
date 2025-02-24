@@ -48,7 +48,6 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
           <FormField
             control={form.control}
             name="photo"
-            // @ts-nocheck
             render={({ field: { value, ...fieldValues } }) => (
               <FormItem>
                 <FormLabel>Your photo</FormLabel>
