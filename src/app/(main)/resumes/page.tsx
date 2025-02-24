@@ -33,7 +33,7 @@ const page = async() => {
   
   return (
     <main className="max-w-7xl mx-auto w-full px-3 py-6 space-y-6">
-      <CreateResumeButton canCreate={totalCount > 10} />
+      <CreateResumeButton canCreate={!(totalCount > 2)} />
       <div className="space-y-1">
       <h1 className="text-3xl font-bold">Your resumes</h1>
       <p>Total: {totalCount}</p>

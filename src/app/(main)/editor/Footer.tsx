@@ -1,8 +1,8 @@
-import Link from "@/components/link";
 import { Button } from "@/components/ui/button";
 import { steps } from "./steps";
 import { FileUser, PenLine } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface FooterProps {
   currentStep: string;
