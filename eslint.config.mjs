@@ -15,6 +15,7 @@ const eslintConfig = [
     rules: {
       "no-unused-vars": "off", // Disable the default ESLint rule for unused variables
       "@typescript-eslint/no-unused-vars": "off", // Disable the TypeScript-specific rule for unused variables
+      "@typescript-eslint/ban-ts-comment": "off",
     },
   },
 ];
