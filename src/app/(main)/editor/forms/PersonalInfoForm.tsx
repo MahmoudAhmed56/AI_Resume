@@ -48,39 +48,37 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
           <FormField
             control={form.control}
             name="photo"
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            render={({ field: { value, ...fieldValues } }) => (
-              <FormItem>
-                <FormLabel>Your photo</FormLabel>
-                <div className="flex items-center gap-2">
-                  <FormControl>
-                    <Input
-                      {...fieldValues}
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files?.[0];
-                        fieldValues.onChange(file);
-                      }}
-                      ref={photoInputRef}
-                    />
-                  </FormControl>
-                  <Button
-                    variant="secondary"
-                    type="button"
-                    onClick={() => {
-                      fieldValues.onChange(null);
-                      if (photoInputRef.current) {
-                        photoInputRef.current.value = "";
+            render={({ field: { value, ...fieldValues } }) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
+              return (
+                <FormItem>
+                  <FormLabel>Your photo</FormLabel>
+                  <div className="flex items-center gap-2">
+                    <FormControl>
+                      <Input
+                        {...fieldValues}
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          fieldValues.onChange(file);
+                        }}
+                        ref={photoInputRef}
+                      />
+                    </FormControl>
+                    <Button variant="secondary" type="button" onClick={()=>{
+                      fieldValues.onChange(null)
+                      if(photoInputRef.current){
+                        photoInputRef.current.value = ""
                       }
-                    }}
-                  >
-                    Remove
-                  </Button>
-                </div>
-                <FormMessage />
-              </FormItem>
-            )}
+                    }}>
+                      Remove
+                    </Button>
+                  </div>
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
           />
           <div className="grid grid-cols-2 gap-3">
             <FormField
