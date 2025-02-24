@@ -1,10 +1,8 @@
 import ResumePreview from "@/components/ResumePreview";
-import { ResumeValues } from "@/lib/validation";
-import ColorPicker from "./ColorPicker";
-import { ChangeEvent } from "react";
-import { ColorResult } from "react-color";
-import BorderStyleButton from "./BorderStyleButton";
 import { cn } from "@/lib/utils";
+import { ResumeValues } from "@/lib/validation";
+import BorderStyleButton from "./BorderStyleButton";
+import ColorPicker from "./ColorPicker";
 
 interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
