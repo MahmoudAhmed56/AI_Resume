@@ -47,7 +47,7 @@ const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        // @ts-ignore - Temporarily ignoring type mismatch
+        // @@ts-expect-error - Temporarily ignoring type mismatch
         educations: values.educations?.filter((edu) => edu !== undefined || []),
       });
     });
