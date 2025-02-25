@@ -18,7 +18,7 @@ const ResumePreview = ({
   className,
   contentRef,
 }: ResumePreviewProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null); 
   const { width } = useDimensions(containerRef);
   return (
     <div
