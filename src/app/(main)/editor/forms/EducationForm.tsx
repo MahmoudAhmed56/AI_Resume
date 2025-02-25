@@ -47,8 +47,9 @@ const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        // @@ts-expect-error - Temporarily ignoring type mismatch
-        educations: values.educations?.filter((edu) => edu !== undefined || []),
+        educations: (values.educations || []).filter((edu): edu is Exclude<typeof edu, undefined> => 
+          edu !== undefined
+        )
       });
     });
     return unsubscribe;
