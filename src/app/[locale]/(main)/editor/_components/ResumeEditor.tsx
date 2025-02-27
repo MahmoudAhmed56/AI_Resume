@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { steps } from "../steps";
 import Breadcrumbs from "../Breadcrumbs";
 import Footer from "../Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ResumeValues } from "@/lib/validation";
 import ResumePreviewSection from "../ResumePreviewSection";
 import { cn, mapToResumeValues } from "@/lib/utils";
@@ -24,7 +24,12 @@ const ResumeEditor = ({ resumeToEdit }: ResumeEditorProps) => {
 
   const [showSmResumePreview, setShowSmResumePreview] =
     useState<boolean>(false);
-  const { isSaving, hasUnsavedChanges } = useAutoSaveResume(resumeData);
+  const { isSaving, hasUnsavedChanges, resumeId } = useAutoSaveResume(resumeData);
+  useEffect(() => {
+    if (resumeId && resumeData.id !== resumeId) {
+      setResumeData(prev => ({ ...prev, id: resumeId }));
+    }
+  }, [resumeId, resumeData.id]);
   useUnloadWarning(hasUnsavedChanges);
   const currentStep = searchParams.get("step") || steps[0].key;
   function setStep(key: string) {

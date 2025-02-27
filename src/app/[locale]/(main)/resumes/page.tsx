@@ -6,6 +6,9 @@ import ResumeItem from "./ResumeItem"
 import CreateResumeButton from "./CreateResumeButton"
 import { getUserSubscriptionLevel } from "@/lib/subscription"
 import { canCreateResume } from "@/lib/permissions"
+import { headers } from "next/headers"
+import { Locale } from "@/i18n.config"
+import getTrans from "@/lib/translation"
 
 
 export const metadata : Metadata = {
@@ -33,7 +36,9 @@ const page = async() => {
     }),
     getUserSubscriptionLevel(userId)
   ])
-  
+  const url = (await headers()).get("x-url")
+  const locale = url?.split("/")[3] as Locale
+  const {welcome} = await getTrans(locale)
   return (
     <main className="max-w-7xl mx-auto w-full px-3 py-6 space-y-6">
       <CreateResumeButton canCreate={canCreateResume(subscriptionLevel,totalCount)} />
