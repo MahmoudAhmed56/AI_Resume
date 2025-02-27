@@ -34,13 +34,13 @@ const Footer = ({
             onClick={
               previousStep ? () => setCurrentStep(previousStep) : undefined
             }
-            disabled={!previousStep || showSmResumePreview}
+            disabled={!previousStep}
           >
             Previous step
           </Button>
           <Button
             onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
-            disabled={!nextStep || showSmResumePreview}
+            disabled={!nextStep}
           >
             Next step
           </Button>

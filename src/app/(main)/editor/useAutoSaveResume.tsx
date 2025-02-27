@@ -12,13 +12,8 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const debouncedResumeData = useDebounce(resumeData, 1500);
-  if (!debouncedResumeData || Object.keys(debouncedResumeData).length === 0) {
-    return;
-  }
 
   const [resumeId, setResumeId] = useState(resumeData.id);
-  console.log(resumeId);
-  
 
   const [lastSavedData, setLastSavedData] = useState(
     structuredClone(resumeData),
@@ -26,10 +21,7 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
 
   const [isSaving, setIsSaving] = useState(false);
   const [isError, setIsError] = useState(false);
-  useEffect(() => {
-    setResumeId(resumeData.id);
-  }, [resumeData.id]);
-  
+
   useEffect(() => {
     setIsError(false);
   }, [debouncedResumeData]);
@@ -50,9 +42,7 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
           }),
           id: resumeId,
         });
-        if (!updatedResume) {
-          throw new Error("Failed to save resume");
-        }
+
         setResumeId(updatedResume.id);
         setLastSavedData(newData);
 
@@ -110,6 +100,5 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
     isSaving,
     hasUnsavedChanges:
       JSON.stringify(resumeData) !== JSON.stringify(lastSavedData),
-      resumeId,
   };
 }
