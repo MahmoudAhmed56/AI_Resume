@@ -1,8 +1,6 @@
-// import { Languages } from '@/constants/enums';
-
-const Languages = {
-  ENGLISH : "en",
-  ARABIC : "ar",
+export enum Languages {
+  ENGLISH = "en",
+  ARABIC = "ar",
 }
 export type LanguageType = Languages.ARABIC | Languages.ENGLISH;
 type i18nType = {

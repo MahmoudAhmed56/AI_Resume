@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
-import { Locale } from "@/i18n.config";
+import { Languages, Locale } from "@/i18n.config";
 import { ThemeProvider } from "next-themes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   description:
     "AI Resume Builder is the easiest way to create professional resume that will help you land your dream job.",
 };
-
+export async function generateStaticParams() {
+  return [{ locale: Languages.ARABIC }, { locale: Languages.ENGLISH }];
+}
 export default async function RootLayout({
   children,
   params

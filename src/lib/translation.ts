@@ -1,11 +1,6 @@
 import 'server-only';
 
-import { Locale } from '@/i18n.config';
-// import { Languages } from '@/constants/enums';
-const Languages = {
-  ENGLISH : "en",
-  ARABIC : "ar",
-}
+import { Languages, Locale } from '@/i18n.config';
 
 const dictionaries = {
   ar: () => import('@/dictionaries/ar.json').then((module) => module.default),
