@@ -3,10 +3,7 @@ import { ResumeValues } from "@/lib/validation";
 import ColorPicker from "./ColorPicker";
 import BorderStyleButton from "./BorderStyleButton";
 import { cn } from "@/lib/utils";
-<<<<<<< HEAD:src/app/[locale]/(main)/editor/ResumePreviewSection.tsx
-
-=======
->>>>>>> parent of f124edb (fix some ui issue):src/app/(main)/editor/ResumePreviewSection.tsx
+import DownloadResume from "./DownloadResume";
 
 interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
