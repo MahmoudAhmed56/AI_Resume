@@ -96,6 +96,20 @@
     "canceledSubscription": "سيتم إلغاء اشتراكك في",
     "billing": "الفواتير",
     "yourCurrentPlan": "خطتك الحالية"
+  },
+  "errors": {
+    "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "couldNotSave": "تعذر حفظ التغييرات.",
+    "retry": "إعادة المحاولة"
+  },
+  "resumeItem": {
+    "delete": "حذف",
+    "print": "طباعة",
+    "deleteResume": "حذف السيرة الذاتية؟",
+    "dialogDescription": "سيتم حذف هذه السيرة الذاتية بشكل دائم. لا يمكن التراجع عن هذا الإجراء.",
+    "cancel": "إلغاء",
+    "noTitle": "لا يوجد عنوان",
+    "updated": "تم التحديث",
+    "created": "تم الإنشاء"
 }
 }
-

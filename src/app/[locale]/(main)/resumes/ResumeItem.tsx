@@ -29,9 +29,20 @@ import { useReactToPrint } from "react-to-print";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
+  translation:{
+    delete: string;
+    print: string;
+    deleteResume: string;
+    dialogDescription: string;
+    cancel: string;
+    noTitle: string;
+    updated: string;
+    created: string;
+    somethingWentWrong: string;
+  }
 }
 
-const ResumeItem = ({ resume }: ResumeItemProps) => {
+const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({
     contentRef,
@@ -46,13 +57,13 @@ const ResumeItem = ({ resume }: ResumeItemProps) => {
           className="inline-block w-full text-center"
         >
           <p className="line-clamp-1 font-semibold">
-            {resume.title || "No title"}
+            {resume.title || `${translation.noTitle}`}
           </p>
           {resume.description && (
             <p className="line-clamp-2 text-sm">{resume.description}</p>
           )}
           <p className="text-xs text-muted-foreground">
-            {wasUpdated ? "Updated" : "Created"} on{" "}
+            {wasUpdated ? `${translation.updated}` : `${translation.created}`} on{" "}
             {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
         </Link>
@@ -68,7 +79,7 @@ const ResumeItem = ({ resume }: ResumeItemProps) => {
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>
-      <MoreMenu resumeId={resume.id} onPrintClick={reactToPrintFn} />
+      <MoreMenu translation={translation} resumeId={resume.id} onPrintClick={reactToPrintFn} />
     </div>
   );
 };
@@ -78,9 +89,17 @@ export default ResumeItem;
 interface MoreMenuProps {
   resumeId: string;
   onPrintClick: () => void;
+  translation:{
+    delete: string;
+    print: string;
+    deleteResume: string;
+    dialogDescription: string;
+    cancel: string;
+    somethingWentWrong: string;
+  }
 }
 
-function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
+function MoreMenu({ resumeId, onPrintClick,translation }: MoreMenuProps) {
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
     useState<boolean>(false);
   return (
@@ -101,14 +120,14 @@ function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
             onClick={() => setShowDeleteConfirmation(true)}
           >
             <Trash2 className="size-4" />
-            Delete
+            {translation.delete}
           </DropdownMenuItem>
           <DropdownMenuItem
             className="flex items-center gap-2"
             onClick={onPrintClick}
           >
             <Printer className="size-4" />
-            Print
+            {translation.print}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -116,6 +135,7 @@ function MoreMenu({ resumeId, onPrintClick }: MoreMenuProps) {
         resumeId={resumeId}
         open={showDeleteConfirmation}
         onOpenChange={setShowDeleteConfirmation}
+        translation={translation}
       />
     </>
   );
@@ -125,12 +145,19 @@ interface DeleteConfirmationDialogProps {
   resumeId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  translation:{
+    delete: string;
+    deleteResume: string;
+    dialogDescription: string;
+    cancel: string;
+    somethingWentWrong: string;
+  }
 }
 
 function DeleteConfirmationDialog({
   resumeId,
   open,
-  onOpenChange,
+  onOpenChange,translation
 }: DeleteConfirmationDialogProps) {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
@@ -143,7 +170,7 @@ function DeleteConfirmationDialog({
         console.log(error);
         toast({
           variant: "destructive",
-          description: "Something went wrong. Please try again.",
+          description:  `${translation.somethingWentWrong}`,
         });
       }
     });
@@ -152,10 +179,9 @@ function DeleteConfirmationDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Delete resume?</DialogTitle>
+          <DialogTitle>{translation.deleteResume}</DialogTitle>
           <DialogDescription>
-            This will permanently delete this resume. This action cannot be
-            undone.
+          {translation.dialogDescription}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -164,10 +190,10 @@ function DeleteConfirmationDialog({
             onClick={handleDelete}
             loading={isPending}
           >
-            Delete
+            {translation.delete}
           </LoadingButton>
           <Button variant="secondary" onClick={() => onOpenChange(false)}>
-            Cancel
+          {translation.cancel}
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -74,11 +74,26 @@ export type EditorPage = {
     showInputForm: string;
     showResumePreview: string;
   };
-  billingPage:{
+  billingPage: {
     somethingWentWrong: string;
     manageSubscription: string;
     canceledSubscription: string;
     billing: string;
     yourCurrentPlan: string;
-  }
+  };
+  errors: {
+    somethingWentWrong: string;
+    couldNotSave: string;
+    retry: string;
+  };
+  resumeItem: {
+    delete: string;
+    print: string;
+    deleteResume: string;
+    dialogDescription: string;
+    cancel: string;
+    noTitle:string;
+    updated:string;
+    created:string;
+  };
 };

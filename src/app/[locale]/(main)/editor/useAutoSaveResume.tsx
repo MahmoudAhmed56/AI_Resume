@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import saveResume from "./actions";
 
 
-export default function useAutoSaveResume(resumeData: ResumeValues) {
+export default function useAutoSaveResume(resumeData: ResumeValues,errors:{
+  somethingWentWrong: string;
+  couldNotSave: string;
+  retry: string;
+}) {
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const debouncedResumeData = useDebounce(resumeData, 1500);
@@ -62,7 +66,7 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
           variant: "destructive",
           description: (
             <div className="space-y-3">
-              <p>Could not save changes.</p>
+              <p>{errors.couldNotSave}</p>
               <Button
                 variant="secondary"
                 onClick={() => {
@@ -70,7 +74,7 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
                   save();
                 }}
               >
-                Retry
+                {errors.retry}
               </Button>
             </div>
           ),

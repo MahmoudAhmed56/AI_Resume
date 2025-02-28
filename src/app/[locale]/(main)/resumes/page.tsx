@@ -36,7 +36,7 @@ const page = async() => {
     getUserSubscriptionLevel(userId)
   ])
   const locale = await getCurrentLocale()
-  const {resumesPage} = await getTrans(locale)
+  const {resumesPage,errors,resumeItem} = await getTrans(locale)
   return (
     <main className="max-w-7xl mx-auto w-full px-3 py-6 space-y-6">
       <CreateResumeButton canCreate={canCreateResume(subscriptionLevel,totalCount)}translation={resumesPage.newResumeButton} />
@@ -46,7 +46,7 @@ const page = async() => {
       </div>
       <div className="flex w-full grid-cols-2 flex-col gap-3 sm:grid md:grid-cols-3 lg:grid-cols-4">
         {resumes.map((resume) => (
-          <ResumeItem key={resume.id} resume={resume} />
+          <ResumeItem key={resume.id} resume={resume} translation={{...resumeItem,...errors}} />
         ))}
       </div>
     </main>

@@ -89,11 +89,26 @@
       "showResumePreview": "Show resume preview"
     }
   },
-  "billingPage":{
+  "billingPage": {
     "somethingWentWrong": "Something went wrong. Please try again.",
     "manageSubscription": "Manage subscription",
     "canceledSubscription": "Your subscription will be canceled on",
     "billing": "Billing",
     "yourCurrentPlan": "Your current plan"
-}
+  },
+  "errors": {
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "couldNotSave": "Could not save changes.",
+    "retry": "Retry"
+  },
+  "resumeItem": {
+    "delete": "Delete",
+    "print": "Print",
+    "deleteResume": "Delete resume?",
+    "dialogDescription": "This will permanently delete this resume. This action cannot be undone.",
+    "cancel": "Cancel",
+    "noTitle":"No title",
+    "updated":"Updated",
+    "created":"Created"
+  }
 }

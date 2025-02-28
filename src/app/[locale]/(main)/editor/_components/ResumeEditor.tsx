@@ -20,13 +20,14 @@ interface ResumeEditorProps {
 
 const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
   const searchParams = useSearchParams();
+  const {errors} = translation
   const [resumeData, setResumeData] = useState<ResumeValues>(
     resumeToEdit ? mapToResumeValues(resumeToEdit) : {},
   );
 
   const [showSmResumePreview, setShowSmResumePreview] =
     useState<boolean>(false);
-  const { isSaving, hasUnsavedChanges } = useAutoSaveResume(resumeData);
+  const { isSaving, hasUnsavedChanges } = useAutoSaveResume(resumeData,errors);
   useUnloadWarning(hasUnsavedChanges);
   const currentStep = searchParams.get("step") || steps[0].key;
   function setStep(key: string) {
