@@ -1,3 +1,15 @@
 {
-  "welcome":"welcome"
+  "logo": "AI Resume Builder",
+  "home":{
+    "firstTitle":"Create the",
+    "secondTitle":"Perfect Resume",
+    "thirdTitle":"in Minutes",
+    "subParagraph":"welcomeOur AI resume builder helps you design a professional resume, even if you're not very smart.",
+    "button":"Get started"
+  },
+  "resumesPage":{
+    "newResumeButton":"New Resume",
+    "title":"Your resumes",
+    "total":"Total"
+  }
 }
