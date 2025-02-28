@@ -17,7 +17,7 @@ interface ResumeEditorProps {
   resumeToEdit: ResumeServerData | null;
   translation: EditorPage;
 }
-//  const {resumesPage} = await getTrans(locale)
+
 const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
   const searchParams = useSearchParams();
   const [resumeData, setResumeData] = useState<ResumeValues>(
@@ -76,6 +76,7 @@ const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
         showSmResumePreview={showSmResumePreview}
         setShowSmResumePreview={setShowSmResumePreview}
         isSaving={isSaving}
+        translation={translation.Footer}
       />
     </div>
   );

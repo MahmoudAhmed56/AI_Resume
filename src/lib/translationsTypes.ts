@@ -15,9 +15,9 @@ export type EditorPage = {
     title: string;
     subtitle: string;
     projectName: string;
-    projectNamePlaceholder:string;
+    projectNamePlaceholder: string;
     description: string;
-    descriptionPlaceholder:string;
+    descriptionPlaceholder: string;
     describe: string;
   };
   PersonalInfo: {
@@ -30,8 +30,8 @@ export type EditorPage = {
     country: string;
     phone: string;
     email: string;
-    removeButton:string
-    photo:string
+    removeButton: string;
+    photo: string;
   };
   WorkExperience: {
     title: string;
@@ -45,7 +45,7 @@ export type EditorPage = {
     dateMessage3: string;
     description: string;
     addWorkExperienceButton: string;
-    removeButton:string
+    removeButton: string;
   };
   Education: {
     title: string;
@@ -65,5 +65,13 @@ export type EditorPage = {
   Summary: {
     title: string;
     subtitle: string;
+  };
+  Footer: {
+    previousStep: string;
+    nextStep: string;
+    close: string;
+    saving: string;
+    showInputForm: string;
+    showResumePreview: string;
   };
 };

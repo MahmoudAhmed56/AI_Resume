@@ -13,73 +13,81 @@
     "total": "الإجمالي"
   },
 
-    "editorPage": {
-      "header": {
-        "title": "صمم سيرتك الذاتية",
-        "subtitle": "اتبع الخطوات التالية لإنشاء سيرتك الذاتية. يتم حفظ تقدمك تلقائيًا."
-      },
-      "steps": {
-        "GeneralInfo": "معلومات عامة",
-        "PersonalInfo": "معلومات شخصية",
-        "WorkExperience": "الخبرة العملية",
-        "Education": "التعليم",
-        "Skills": "المهارات",
-        "Summary": "الملخص"
-      },
-      "GeneralInfo": {
-        "title": "معلومات عامة",
-        "subtitle": "لن تظهر هذه المعلومات في سيرتك الذاتية.",
-        "projectName": "اسم المشروع",
-        "projectNamePlaceholder":"سيرتي الذاتية",
-        "description": "الوصف",
-        "descriptionPlaceholder":"سيرتي الذاتية للوظيفة الجديدة",
-        "describe": "اضف وصف للسيرة الذاتية الخاصة بك"
-      },
-      "PersonalInfo": {
-        "title": "المعلومات الشخصية",
-        "subtitle": "أخبرنا عن نفسك.",
-        "firstName": "الاسم الأول",
-        "lastName": "الاسم الأخير",
-        "jobTitle": "المسمى الوظيفي",
-        "city": "المدينة",
-        "country": "الدولة",
-        "phone": "الهاتف",
-        "email": "البريد الإلكتروني",
-        "removeButton": "إزالة",
-        "photo":"صورتك"
-      },
-      "WorkExperience": {
-        "title": "الخبرة العملية",
-        "subtitle": "أضف عددًا غير محدود من الخبرات العملية.",
-        "jobTitle": "المسمى الوظيفي",
-        "company": "الشركة",
-        "startDate": "تاريخ البداية",
-        "endDate": "تاريخ النهاية",
-        "dateMessage1": "اترك",
-        "dateMessage2": "تاريخ النهاية",
-        "dateMessage3": "فارغًا إذا كنت لا تزال تعمل في هذه الوظيفة.",
-        "description": "الوصف",
-        "addWorkExperienceButton": "إضافة خبرة عمل",
-        "removeButton":"إزالة"
-      },
-      "Education": {
-        "title": "التعليم",
-        "subtitle": "أضف عددًا غير محدود من المؤهلات التعليمية.",
-        "degree": "الدرجة العلمية",
-        "school": "المدرسة/الجامعة",
-        "startDate": "تاريخ البداية",
-        "endDate": "تاريخ النهاية",
-        "removeButton": "إزالة",
-        "addEducationButton": "إضافة مؤهل تعليمي"
-      },
-      "Skills": {
-        "title": "المهارات",
-        "subtitle": "ما الذي تجيده؟",
-        "textareaMessage": "افصل بين كل مهارة بفاصلة (,)."
-      },
-      "Summary": {
-        "title": "ملخص احترافي",
-        "subtitle": "اكتب مقدمة موجزة لسيرتك الذاتية."
-      }
+  "editorPage": {
+    "header": {
+      "title": "صمم سيرتك الذاتية",
+      "subtitle": "اتبع الخطوات التالية لإنشاء سيرتك الذاتية. يتم حفظ تقدمك تلقائيًا."
+    },
+    "steps": {
+      "GeneralInfo": "معلومات عامة",
+      "PersonalInfo": "معلومات شخصية",
+      "WorkExperience": "الخبرة العملية",
+      "Education": "التعليم",
+      "Skills": "المهارات",
+      "Summary": "الملخص"
+    },
+    "GeneralInfo": {
+      "title": "معلومات عامة",
+      "subtitle": "لن تظهر هذه المعلومات في سيرتك الذاتية.",
+      "projectName": "اسم المشروع",
+      "projectNamePlaceholder": "سيرتي الذاتية",
+      "description": "الوصف",
+      "descriptionPlaceholder": "سيرتي الذاتية للوظيفة الجديدة",
+      "describe": "اضف وصف للسيرة الذاتية الخاصة بك"
+    },
+    "PersonalInfo": {
+      "title": "المعلومات الشخصية",
+      "subtitle": "أخبرنا عن نفسك.",
+      "firstName": "الاسم الأول",
+      "lastName": "الاسم الأخير",
+      "jobTitle": "المسمى الوظيفي",
+      "city": "المدينة",
+      "country": "الدولة",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "removeButton": "إزالة",
+      "photo": "صورتك"
+    },
+    "WorkExperience": {
+      "title": "الخبرة العملية",
+      "subtitle": "أضف عددًا غير محدود من الخبرات العملية.",
+      "jobTitle": "المسمى الوظيفي",
+      "company": "الشركة",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "dateMessage1": "اترك",
+      "dateMessage2": "تاريخ النهاية",
+      "dateMessage3": "فارغًا إذا كنت لا تزال تعمل في هذه الوظيفة.",
+      "description": "الوصف",
+      "addWorkExperienceButton": "إضافة خبرة عمل",
+      "removeButton": "إزالة"
+    },
+    "Education": {
+      "title": "التعليم",
+      "subtitle": "أضف عددًا غير محدود من المؤهلات التعليمية.",
+      "degree": "الدرجة العلمية",
+      "school": "المدرسة/الجامعة",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "removeButton": "إزالة",
+      "addEducationButton": "إضافة مؤهل تعليمي"
+    },
+    "Skills": {
+      "title": "المهارات",
+      "subtitle": "ما الذي تجيده؟",
+      "textareaMessage": "افصل بين كل مهارة بفاصلة (,)."
+    },
+    "Summary": {
+      "title": "ملخص احترافي",
+      "subtitle": "اكتب مقدمة موجزة لسيرتك الذاتية."
+    },
+    "Footer": {
+      "previousStep": "الخطوة السابقة",
+      "nextStep": "الخطوة التالية",
+      "close": "إغلاق",
+      "saving": "جاري الحفظ...",
+      "showInputForm": "إظهار نموذج الإدخال",
+      "showResumePreview": "إظهار معاينة السيرة الذاتية"
     }
   }
+}

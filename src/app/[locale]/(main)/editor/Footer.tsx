@@ -10,6 +10,14 @@ interface FooterProps {
   showSmResumePreview: boolean;
   setShowSmResumePreview: (show: boolean) => void;
   isSaving:boolean;
+  translation:{
+    previousStep: string;
+    nextStep: string;
+    close: string;
+    saving: string;
+    showInputForm: string;
+    showResumePreview: string;
+}
 }
 
 const Footer = ({
@@ -17,7 +25,8 @@ const Footer = ({
   setCurrentStep,
   showSmResumePreview,
   setShowSmResumePreview,
-  isSaving
+  isSaving,
+  translation
 }: FooterProps) => {
   const previousStep = steps.find(
     (_, index) => steps[index + 1]?.key === currentStep,
@@ -36,13 +45,13 @@ const Footer = ({
             }
             disabled={!previousStep}
           >
-            Previous step
+            {translation.previousStep}
           </Button>
           <Button
             onClick={nextStep ? () => setCurrentStep(nextStep) : undefined}
             disabled={!nextStep}
           >
-            Next step
+            {translation.nextStep}
           </Button>
         </div>
         <Button
@@ -51,18 +60,18 @@ const Footer = ({
         onClick={()=>setShowSmResumePreview(!showSmResumePreview)}
         className="md:hidden"
           title={
-            showSmResumePreview ? "Show input form" : "Show resume preview"
+            showSmResumePreview ? `${translation.showInputForm}` : `${translation.showResumePreview}`
           }
         >
           {showSmResumePreview ? <PenLine /> : <FileUser />}
         </Button>
         <div className="flex items-center gap-3">
           <Button variant="secondary" asChild>
-            <Link href="/resumes">Close</Link>
+            <Link href="/resumes">{translation.close}</Link>
           </Button>
           <p className={cn("text-muted-foreground opacity-0",
           isSaving && "opacity-100"
-          )}>Saving...</p>
+          )}>{translation.saving}</p>
         </div>
       </div>
     </footer>
