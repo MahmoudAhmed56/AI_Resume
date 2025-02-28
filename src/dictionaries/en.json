@@ -41,7 +41,9 @@
       "city":"City",
       "country":"Country",
       "phone":"Phone",
-      "email":"Email"
+      "email":"Email",
+      "removeButton":"remove",
+      "photo":"Your photo"
     },
     "WorkExperience":{
       "title":"Work experience",

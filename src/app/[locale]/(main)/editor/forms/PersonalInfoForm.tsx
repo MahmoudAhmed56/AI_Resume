@@ -14,7 +14,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 
-const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
+const PersonalInfoForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
+  const {PersonalInfo} = translation
   const form = useForm<PersonalInfoValues>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {
@@ -40,8 +41,8 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Personal info</h2>
-        <p className="text-sm text-muted-foreground">Tell us about yourself.</p>
+        <h2 className="text-2xl font-semibold">{PersonalInfo.title}</h2>
+        <p className="text-sm text-muted-foreground">{PersonalInfo.subtitle}</p>
       </div>
       <Form {...form}>
         <form className="space-y-3">
@@ -52,7 +53,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             render={({ field: { value, ...fieldValues } }) => {
               return (
                 <FormItem>
-                  <FormLabel>Your photo</FormLabel>
+                  <FormLabel>{PersonalInfo.photo}</FormLabel>
                   <div className="flex items-center gap-2">
                     <FormControl>
                       <Input
@@ -72,7 +73,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
                         photoInputRef.current.value = ""
                       }
                     }}>
-                      Remove
+                      {PersonalInfo.removeButton}
                     </Button>
                   </div>
                   <FormMessage />
@@ -86,7 +87,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
               name="firstName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>First name</FormLabel>
+                  <FormLabel>{PersonalInfo.firstName}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -99,7 +100,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
               name="lastName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Last name</FormLabel>
+                  <FormLabel>{PersonalInfo.lastName}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -113,7 +114,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             name="jobTitle"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Job title</FormLabel>
+                <FormLabel>{PersonalInfo.jobTitle}</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
@@ -127,7 +128,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
               name="city"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>{PersonalInfo.city}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -140,7 +141,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
               name="country"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Country</FormLabel>
+                  <FormLabel>{PersonalInfo.country}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -154,7 +155,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel>{PersonalInfo.phone}</FormLabel>
                 <FormControl>
                   <Input {...field} type="tel" />
                 </FormControl>
@@ -167,7 +168,7 @@ const PersonalInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{PersonalInfo.email}</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>

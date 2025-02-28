@@ -28,6 +28,8 @@ export type EditorPage = {
     country: string;
     phone: string;
     email: string;
+    removeButton:string
+    photo:string
   };
   WorkExperience: {
     title: string;
