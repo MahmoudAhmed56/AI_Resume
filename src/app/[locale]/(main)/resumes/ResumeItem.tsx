@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dialog";
 import LoadingButton from "@/components/LoadingButton";
 import { useReactToPrint } from "react-to-print";
+import { useParams } from "next/navigation";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
@@ -63,7 +64,7 @@ const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
             <p className="line-clamp-2 text-sm">{resume.description}</p>
           )}
           <p className="text-xs text-muted-foreground">
-            {wasUpdated ? `${translation.updated}` : `${translation.created}`} on{" "}
+            {wasUpdated ? `${translation.updated}` : `${translation.created}`}{" "}
             {formatDate(resume.updatedAt, "MMM d, yyyy h:mm a")}
           </p>
         </Link>
@@ -100,11 +101,12 @@ interface MoreMenuProps {
 }
 
 function MoreMenu({ resumeId, onPrintClick,translation }: MoreMenuProps) {
+  const {locale} = useParams()
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
     useState<boolean>(false);
   return (
     <>
-      <DropdownMenu>
+      <DropdownMenu dir={locale === "ar" ? "rtl" : "ltr"}>
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
@@ -159,6 +161,7 @@ function DeleteConfirmationDialog({
   open,
   onOpenChange,translation
 }: DeleteConfirmationDialogProps) {
+  const {locale} = useParams()
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   async function handleDelete() {
@@ -176,27 +179,27 @@ function DeleteConfirmationDialog({
     });
   }
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{translation.deleteResume}</DialogTitle>
-          <DialogDescription>
-          {translation.dialogDescription}
-          </DialogDescription>
-        </DialogHeader>
-        <DialogFooter>
-          <LoadingButton
-            variant="destructive"
-            onClick={handleDelete}
-            loading={isPending}
-          >
-            {translation.delete}
-          </LoadingButton>
-          <Button variant="secondary" onClick={() => onOpenChange(false)}>
-          {translation.cancel}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent dir={locale === "ar" ? "rtl" : "ltr"}>
+          <DialogHeader>
+            <DialogTitle>{translation.deleteResume}</DialogTitle>
+            <DialogDescription>
+            {translation.dialogDescription}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <LoadingButton
+              variant="destructive"
+              onClick={handleDelete}
+              loading={isPending}
+            >
+              {translation.delete}
+            </LoadingButton>
+            <Button variant="secondary" onClick={() => onOpenChange(false)}>
+            {translation.cancel}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
   );
 }

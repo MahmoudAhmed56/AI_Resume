@@ -16,7 +16,7 @@ interface PageProps {
 
 const EditorPage = async ({ searchParams }: PageProps) => {
   const locale = await getCurrentLocale()
-  const {editorPage} = await getTrans(locale)
+  const translation = await getTrans(locale)
   const { resumeId } = await searchParams;
   const { userId } = await auth();
   if (!userId) {
@@ -31,7 +31,7 @@ const EditorPage = async ({ searchParams }: PageProps) => {
         include: resumeDataInclude,
       })
     : null;
-  return <ResumeEditor translation={editorPage} resumeToEdit={resumeToEdit} />;
+  return <ResumeEditor translation={translation} resumeToEdit={resumeToEdit} />;
 };
 
 export default EditorPage;

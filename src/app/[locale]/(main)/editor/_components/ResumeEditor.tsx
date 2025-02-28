@@ -11,11 +11,11 @@ import { cn, mapToResumeValues } from "@/lib/utils";
 import useAutoSaveResume from "../useAutoSaveResume";
 import useUnloadWarning from "@/hooks/useUnloadWarning";
 import { ResumeServerData } from "@/lib/types";
-import { EditorPage } from "@/lib/translationsTypes";
+import { AppContent } from "@/lib/translationsTypes";
 
 interface ResumeEditorProps {
   resumeToEdit: ResumeServerData | null;
-  translation: EditorPage;
+  translation: AppContent;
 }
 
 const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
@@ -41,9 +41,9 @@ const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
   return (
     <div className="flex grow flex-col">
       <header className="space-y-1.5 border-b px-3 py-5 text-center">
-        <h1 className="text-2xl font-bold">{translation.header.title}</h1>
+        <h1 className="text-2xl font-bold">{translation.editorPage.header.title}</h1>
         <p className="text-sm text-muted-foreground">
-        {translation.header.subtitle}
+        {translation.editorPage.header.subtitle}
         </p>
       </header>
       <main className="relative grow">
@@ -77,7 +77,7 @@ const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
         showSmResumePreview={showSmResumePreview}
         setShowSmResumePreview={setShowSmResumePreview}
         isSaving={isSaving}
-        translation={translation.Footer}
+        translation={translation.editorPage.Footer}
       />
     </div>
   );

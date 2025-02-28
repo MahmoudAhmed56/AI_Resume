@@ -4,7 +4,9 @@
     "firstTitle": "Create the",
     "secondTitle": "Perfect Resume",
     "thirdTitle": "in Minutes",
-    "subParagraph": "welcomeOur AI resume builder helps you design a professional resume, even if you're not very smart.",
+    "subParagraph1": "Our",
+    "subParagraph2":"AI resume builder",
+    "subParagraph3":"helps you design a professional resume, even if you're not very smart.",
     "button": "Get started"
   },
   "resumesPage": {
@@ -108,7 +110,7 @@
     "dialogDescription": "This will permanently delete this resume. This action cannot be undone.",
     "cancel": "Cancel",
     "noTitle":"No title",
-    "updated":"Updated",
+    "updated":"Updated on",
     "created":"Created"
   }
 }
