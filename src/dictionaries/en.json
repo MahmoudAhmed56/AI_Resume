@@ -29,7 +29,9 @@
       "title":"General info",
       "subtitle":"This will not appear on your resume.",
       "projectName":"Project name",
+      "projectNamePlaceholder":"My cool Resume",
       "description":"Description",
+      "descriptionPlaceholder":"A resume for my next job",
       "describe":"Describe What this resume is for."
     },
     "PersonalInfo":{

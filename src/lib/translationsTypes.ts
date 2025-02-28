@@ -14,9 +14,11 @@ export type EditorPage = {
   GeneralInfo: {
     title: string;
     subtitle: string;
-    ProjectName: string;
-    Description: string;
-    Describe: string;
+    projectName: string;
+    projectNamePlaceholder:string;
+    description: string;
+    descriptionPlaceholder:string;
+    describe: string;
   };
   PersonalInfo: {
     title: string;

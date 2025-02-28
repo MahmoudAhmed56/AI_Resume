@@ -46,9 +46,9 @@ const GeneralInfoForm = ({ resumeData, setResumeData,translation }: EditorFormPr
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{GeneralInfo.ProjectName}</FormLabel>
+                <FormLabel>{GeneralInfo.projectName}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="My cool Resume" autoFocus />
+                  <Input {...field} placeholder={GeneralInfo.projectNamePlaceholder} autoFocus />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -59,12 +59,12 @@ const GeneralInfoForm = ({ resumeData, setResumeData,translation }: EditorFormPr
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{GeneralInfo.Description}</FormLabel>
+                <FormLabel>{GeneralInfo.description}</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="A resume for my next job" />
+                  <Input {...field} placeholder={GeneralInfo.descriptionPlaceholder} />
                 </FormControl>
                 <FormDescription>
-                {GeneralInfo.Describe}
+                {GeneralInfo.describe}
                 </FormDescription>
                 <FormMessage />
               </FormItem>

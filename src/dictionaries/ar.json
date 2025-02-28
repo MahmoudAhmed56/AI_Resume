@@ -30,7 +30,9 @@
         "title": "معلومات عامة",
         "subtitle": "لن تظهر هذه المعلومات في سيرتك الذاتية.",
         "projectName": "اسم المشروع",
+        "projectNamePlaceholder":"سيرتي الذاتية",
         "description": "الوصف",
+        "descriptionPlaceholder":"سيرتي الذاتية للوظيفة الجديدة",
         "describe": "اضف وصف للسيرة الذاتية الخاصة بك"
       },
       "PersonalInfo": {
