@@ -7,7 +7,8 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 
-const SkillsForm = ({resumeData,setResumeData}:EditorFormProps) => {
+const SkillsForm = ({resumeData,setResumeData,translation}:EditorFormProps) => {
+  const {Skills} = translation
   const form = useForm<SkillsValues>({
     resolver:zodResolver(skillsSchema),
     defaultValues:{
@@ -28,8 +29,8 @@ const SkillsForm = ({resumeData,setResumeData}:EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
        <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Skills</h2>
-        <p className="text-sm text-muted-foreground">What are you good at?</p>
+        <h2 className="text-2xl font-semibold">{Skills.title}</h2>
+        <p className="text-sm text-muted-foreground">{Skills.subtitle}</p>
       </div>
       <Form {...form}>
       <form className="space-y-3">
@@ -39,7 +40,7 @@ const SkillsForm = ({resumeData,setResumeData}:EditorFormProps) => {
         render={({field})=>(
           <FormItem>
             <FormLabel className="sr-only">
-              Skills
+            {Skills.title}
             </FormLabel>
             <FormControl>
               <Textarea
@@ -52,7 +53,7 @@ const SkillsForm = ({resumeData,setResumeData}:EditorFormProps) => {
               />
             </FormControl>
             <FormDescription>
-            Separate each skill with a comma.
+            {Skills.textareaMessage}
             </FormDescription>
             <FormMessage/>
           </FormItem>
