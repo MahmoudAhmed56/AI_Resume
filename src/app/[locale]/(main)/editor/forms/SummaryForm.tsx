@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const SummaryForm = ({ resumeData, setResumeData }: EditorFormProps) => {
+const SummaryForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
+  const {Summary} = translation
   const form = useForm<SummaryValues>({
     resolver: zodResolver(summarySchema),
     defaultValues: {
@@ -24,10 +25,9 @@ const SummaryForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Professional summary</h2>
+        <h2 className="text-2xl font-semibold">{Summary.title}</h2>
         <p className="text-sm text-muted-foreground">
-          Write a short introduction for your resume or let the AI generate one
-          from your entered data.
+        {Summary.subtitle}
         </p>
       </div>
       <Form {...form}>
@@ -38,7 +38,7 @@ const SummaryForm = ({ resumeData, setResumeData }: EditorFormProps) => {
           render={({field})=>(
             <FormItem>
               <FormLabel className="sr-only">
-              Professional summary
+              {Summary.title}
               </FormLabel>
               <FormControl>
                 <Textarea 
