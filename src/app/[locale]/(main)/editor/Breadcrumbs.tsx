@@ -1,6 +1,8 @@
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { steps } from "./steps";
 import React from "react";
+import { useParams } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface BreadcrumbsProps {
   currentStep: string;
@@ -8,6 +10,7 @@ interface BreadcrumbsProps {
 }
 
 const Breadcrumbs = ({ currentStep, setCurrentStep }: BreadcrumbsProps) => {
+  const {locale} = useParams()
   return (
     <div className="flex justify-center">
       <Breadcrumb>
@@ -18,19 +21,19 @@ const Breadcrumbs = ({ currentStep, setCurrentStep }: BreadcrumbsProps) => {
           <BreadcrumbItem>
           {step.key === currentStep ? (
             <BreadcrumbPage>
-            {step.title}
+            {locale === "en" ? step.title.English: step.title.Arabic}
             </BreadcrumbPage>
           ):(
             <BreadcrumbLink asChild>
               <button onClick={()=>{
                 setCurrentStep(step.key)
               }}>
-                {step.title}
+                {locale === "en" ? step.title.English: step.title.Arabic}
               </button>
             </BreadcrumbLink>
           )}
           </BreadcrumbItem>
-          <BreadcrumbSeparator className="last:hidden"/>
+          <BreadcrumbSeparator className={cn("last:hidden",locale === "ar" ? "rotate-180":"")}/>
           </React.Fragment>
         )
       })}
