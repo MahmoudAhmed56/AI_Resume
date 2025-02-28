@@ -29,8 +29,9 @@
       "GeneralInfo": {
         "title": "معلومات عامة",
         "subtitle": "لن تظهر هذه المعلومات في سيرتك الذاتية.",
-        "ProjectName": "اسم المشروع",
-        "Description": "الوصف"
+        "projectName": "اسم المشروع",
+        "description": "الوصف",
+        "describe": "اضف وصف للسيرة الذاتية الخاصة بك"
       },
       "PersonalInfo": {
         "title": "المعلومات الشخصية",

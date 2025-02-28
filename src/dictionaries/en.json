@@ -28,8 +28,9 @@
     "GeneralInfo":{
       "title":"General info",
       "subtitle":"This will not appear on your resume.",
-      "ProjectName":"Project name",
-      "Description":"Description"
+      "projectName":"Project name",
+      "description":"Description",
+      "describe":"Describe What this resume is for."
     },
     "PersonalInfo":{
       "title":"Personal info",

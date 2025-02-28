@@ -14,7 +14,8 @@ import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
 import { EditorFormProps } from "@/lib/types";
 
-const GeneralInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
+const GeneralInfoForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
+  const {GeneralInfo} = translation
   const form = useForm<GeneralInfoValues>({
     resolver: zodResolver(generalInfoSchema),
     defaultValues: {
@@ -33,9 +34,9 @@ const GeneralInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">General info</h2>
+        <h2 className="text-2xl font-semibold">{GeneralInfo.title}</h2>
         <p className="text-sm text-muted-foreground">
-          This will not appear on your resume.
+        {GeneralInfo.subtitle}
         </p>
       </div>
       <Form {...form}>
@@ -45,7 +46,7 @@ const GeneralInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Project name</FormLabel>
+                <FormLabel>{GeneralInfo.ProjectName}</FormLabel>
                 <FormControl>
                   <Input {...field} placeholder="My cool Resume" autoFocus />
                 </FormControl>
@@ -58,12 +59,12 @@ const GeneralInfoForm = ({ resumeData, setResumeData }: EditorFormProps) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel>{GeneralInfo.Description}</FormLabel>
                 <FormControl>
                   <Input {...field} placeholder="A resume for my next job" />
                 </FormControl>
                 <FormDescription>
-                  Describe What this resume is for.
+                {GeneralInfo.Describe}
                 </FormDescription>
                 <FormMessage />
               </FormItem>

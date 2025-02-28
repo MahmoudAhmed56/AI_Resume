@@ -16,6 +16,7 @@ export type EditorPage = {
     subtitle: string;
     ProjectName: string;
     Description: string;
+    Describe: string;
   };
   PersonalInfo: {
     title: string;
