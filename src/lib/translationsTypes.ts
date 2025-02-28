@@ -74,4 +74,11 @@ export type EditorPage = {
     showInputForm: string;
     showResumePreview: string;
   };
+  billingPage:{
+    somethingWentWrong: string;
+    manageSubscription: string;
+    canceledSubscription: string;
+    billing: string;
+    yourCurrentPlan: string;
+  }
 };

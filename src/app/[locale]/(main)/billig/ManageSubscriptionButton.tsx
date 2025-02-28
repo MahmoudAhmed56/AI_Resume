@@ -4,8 +4,14 @@ import LoadingButton from "@/components/LoadingButton";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { createCustomerPortalSession } from "./actions";
-
-export default function ManageSubscriptionButton() {
+interface BillingPage {
+  somethingWentWrong: string;
+  manageSubscription: string;
+  canceledSubscription: string;
+  billing: string;
+  yourCurrentPlan: string;
+}
+export default function ManageSubscriptionButton(translation:BillingPage) {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
@@ -19,7 +25,7 @@ export default function ManageSubscriptionButton() {
       console.error(error);
       toast({
         variant: "destructive",
-        description: "Something went wrong. Please try again.",
+        description: `${translation.somethingWentWrong}`,
       });
     } finally {
       setLoading(false);
@@ -28,7 +34,7 @@ export default function ManageSubscriptionButton() {
 
   return (
     <LoadingButton onClick={handleClick} loading={loading}>
-      Manage subscription
+      {translation.manageSubscription}
     </LoadingButton>
   );
 }

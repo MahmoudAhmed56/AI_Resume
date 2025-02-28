@@ -89,5 +89,13 @@
       "showInputForm": "إظهار نموذج الإدخال",
       "showResumePreview": "إظهار معاينة السيرة الذاتية"
     }
-  }
+  },
+  "billingPage": {
+    "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "manageSubscription": "إدارة الاشتراك",
+    "canceledSubscription": "سيتم إلغاء اشتراكك في",
+    "billing": "الفواتير",
+    "yourCurrentPlan": "خطتك الحالية"
 }
+}
+
