@@ -11,5 +11,67 @@
     "newResumeButton": "إنشاء سيرة ذاتية جديدة",
     "title": "سيرك الذاتية",
     "total": "الإجمالي"
+  },
+
+    "editorPage": {
+      "header": {
+        "title": "صمم سيرتك الذاتية",
+        "subtitle": "اتبع الخطوات التالية لإنشاء سيرتك الذاتية. يتم حفظ تقدمك تلقائيًا."
+      },
+      "steps": {
+        "GeneralInfo": "معلومات عامة",
+        "PersonalInfo": "معلومات شخصية",
+        "WorkExperience": "الخبرة العملية",
+        "Education": "التعليم",
+        "Skills": "المهارات",
+        "Summary": "الملخص"
+      },
+      "GeneralInfo": {
+        "title": "معلومات عامة",
+        "subtitle": "لن تظهر هذه المعلومات في سيرتك الذاتية.",
+        "ProjectName": "اسم المشروع",
+        "Description": "الوصف"
+      },
+      "PersonalInfo": {
+        "title": "المعلومات الشخصية",
+        "subtitle": "أخبرنا عن نفسك.",
+        "firstName": "الاسم الأول",
+        "lastName": "الاسم الأخير",
+        "jobTitle": "المسمى الوظيفي",
+        "city": "المدينة",
+        "country": "الدولة",
+        "phone": "الهاتف",
+        "email": "البريد الإلكتروني"
+      },
+      "WorkExperience": {
+        "title": "الخبرة العملية",
+        "subtitle": "أضف عددًا غير محدود من الخبرات العملية.",
+        "jobTitle": "المسمى الوظيفي",
+        "company": "الشركة",
+        "startDate": "تاريخ البداية",
+        "endDate": "تاريخ النهاية",
+        "dateMessage": "اترك تاريخ النهاية فارغًا إذا كنت لا تزال تعمل في هذه الوظيفة.",
+        "description": "الوصف",
+        "addWorkExperienceButton": "إضافة خبرة عمل"
+      },
+      "Education": {
+        "title": "التعليم",
+        "subtitle": "أضف عددًا غير محدود من المؤهلات التعليمية.",
+        "degree": "الدرجة العلمية",
+        "school": "المدرسة/الجامعة",
+        "startDate": "تاريخ البداية",
+        "endDate": "تاريخ النهاية",
+        "removeButton": "إزالة",
+        "addEducationButton": "إضافة مؤهل تعليمي"
+      },
+      "Skills": {
+        "title": "المهارات",
+        "subtitle": "ما الذي تجيده؟",
+        "textareaMessage": "افصل بين كل مهارة بفاصلة (,)."
+      },
+      "Summary": {
+        "title": "ملخص احترافي",
+        "subtitle": "اكتب مقدمة موجزة لسيرتك الذاتية."
+      }
+    }
   }
-}
