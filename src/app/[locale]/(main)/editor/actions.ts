@@ -8,7 +8,7 @@ import { auth } from "@clerk/nextjs/server";
 import { del, put } from "@vercel/blob";
 import path from "path";
 
-const saveResume = async (values: ResumeValues) => {
+export const saveResume = async (values: ResumeValues) => {
   const { id } = values;
   const { photo, workExperiences, educations, ...resumeValues } =
     resumeSchema.parse(values);

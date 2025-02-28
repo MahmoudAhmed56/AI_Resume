@@ -3,8 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
 import resumePreview from "@/assets/resume-preview.jpg";
+import getTrans from "@/lib/translation";
+import { headers } from "next/headers";
+import { Locale } from "@/i18n.config";
 
-export default function Home() {
+export default async function Home() {
+  const url = (await headers()).get("x-url")
+  const locale = url?.split("/")[3] as Locale
+  const {welcome} = await getTrans(locale)
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-gray-100 px-5 py-12 text-center text-gray-900 md:flex-row md:text-start lg:gap-12">
       <div className="max-w-prose space-y-3">
@@ -23,7 +29,7 @@ export default function Home() {
           in Minutes
         </h1>
         <p className="text-lg text-gray-500">
-          Our <span className="font-bold">AI resume builder</span> helps you
+        {welcome}Our <span className="font-bold">AI resume builder</span> helps you
           design a professional resume, even if you&apos;re not very smart.
         </p>
         <Button asChild size="lg" variant="premium">
