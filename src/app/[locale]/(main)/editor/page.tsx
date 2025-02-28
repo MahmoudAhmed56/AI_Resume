@@ -3,6 +3,8 @@ import ResumeEditor from "./_components/ResumeEditor";
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 import { resumeDataInclude } from "@/lib/types";
+import { getCurrentLocale } from "@/lib/getCurrentLocale";
+import getTrans from "@/lib/translation";
 
 export const metadata: Metadata = {
   title: "Design your resumes",
@@ -13,6 +15,8 @@ interface PageProps {
 }
 
 const EditorPage = async ({ searchParams }: PageProps) => {
+  const locale = await getCurrentLocale()
+  const {editorPage} = await getTrans(locale)
   const { resumeId } = await searchParams;
   const { userId } = await auth();
   if (!userId) {
@@ -27,7 +31,7 @@ const EditorPage = async ({ searchParams }: PageProps) => {
         include: resumeDataInclude,
       })
     : null;
-  return <ResumeEditor resumeToEdit={resumeToEdit} />;
+  return <ResumeEditor translation={editorPage} resumeToEdit={resumeToEdit} />;
 };
 
 export default EditorPage;

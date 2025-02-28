@@ -11,12 +11,14 @@ import { cn, mapToResumeValues } from "@/lib/utils";
 import useAutoSaveResume from "../useAutoSaveResume";
 import useUnloadWarning from "@/hooks/useUnloadWarning";
 import { ResumeServerData } from "@/lib/types";
+import { EditorPage } from "@/lib/translationsTypes";
 
 interface ResumeEditorProps {
   resumeToEdit: ResumeServerData | null;
+  translation: EditorPage;
 }
-
-const ResumeEditor = ({ resumeToEdit }: ResumeEditorProps) => {
+//  const {resumesPage} = await getTrans(locale)
+const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
   const searchParams = useSearchParams();
   const [resumeData, setResumeData] = useState<ResumeValues>(
     resumeToEdit ? mapToResumeValues(resumeToEdit) : {},
@@ -38,10 +40,9 @@ const ResumeEditor = ({ resumeToEdit }: ResumeEditorProps) => {
   return (
     <div className="flex grow flex-col">
       <header className="space-y-1.5 border-b px-3 py-5 text-center">
-        <h1 className="text-2xl font-bold">Design your resume</h1>
+        <h1 className="text-2xl font-bold">{translation.header.title}</h1>
         <p className="text-sm text-muted-foreground">
-          Follow the steps below to create your resume. Your progress will be
-          saved automatically.
+        {translation.header.subtitle}
         </p>
       </header>
       <main className="relative grow">
@@ -57,6 +58,7 @@ const ResumeEditor = ({ resumeToEdit }: ResumeEditorProps) => {
               <FormComponent
                 resumeData={resumeData}
                 setResumeData={setResumeData}
+                translation={translation}
               />
             )}
           </div>

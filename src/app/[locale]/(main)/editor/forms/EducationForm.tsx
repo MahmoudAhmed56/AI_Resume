@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,7 +13,7 @@ import { EditorFormProps } from "@/lib/types";
 import { EducationValues, educationSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GripHorizontal } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 import {
   DndContext,
@@ -33,8 +34,13 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
+import { EditorPage } from "@/lib/translationsTypes";
 
-const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
+
+
+const EducationForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
+
+  const {Education} = translation
   const form = useForm<EducationValues>({
     resolver: zodResolver(educationSchema),
     defaultValues: {
@@ -77,9 +83,9 @@ const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Education</h2>
+        <h2 className="text-2xl font-semibold">{Education.title}</h2>
         <p className="text-sm text-muted-foreground">
-          Add as many educations as you like.
+        {Education.subtitle}
         </p>
       </div>
       <Form {...form}>
@@ -101,6 +107,7 @@ const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
                   index={index}
                   remove={remove}
                   key={field.id}
+                  Education={Education}
                 />
               ))}
             </SortableContext>
@@ -117,7 +124,7 @@ const EducationForm = ({ resumeData, setResumeData }: EditorFormProps) => {
                 })
               }
             >
-              Add education
+              {Education.addEducationButton}
             </Button>
           </div>
         </form>
@@ -131,8 +138,9 @@ interface EducationItemProps {
   form: UseFormReturn<EducationValues>;
   index: number;
   remove: (index: number) => void;
+  Education:{[key:string]:string};
 }
-function EducationItem({ id, form, index, remove }: EducationItemProps) {
+function EducationItem({ id, form, index, remove, Education }: EducationItemProps) {
   const {
     attributes,
     listeners,
@@ -154,7 +162,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
       }}
     >
       <div className="flex justify-between gap-2">
-        <span className="font-semibold">Education {index + 1}</span>
+        <span className="font-semibold">{Education.title} {index + 1}</span>
         <GripHorizontal className="size-5 cursor-grab text-muted-foreground focus:outline-none"
         {...attributes}
         {...listeners} />
@@ -165,7 +173,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Degree</FormLabel>
+              <FormLabel>{Education.degree}</FormLabel>
               <FormControl>
                 <Input {...field} autoFocus />
               </FormControl>
@@ -180,7 +188,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>School</FormLabel>
+              <FormLabel>{Education.school}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -196,7 +204,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Start date</FormLabel>
+                <FormLabel>{Education.startDate}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -215,7 +223,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>End date</FormLabel>
+                <FormLabel>{Education.endDate}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -230,7 +238,7 @@ function EducationItem({ id, form, index, remove }: EducationItemProps) {
         />
       </div>
       <Button variant="destructive" type="button" onClick={() => remove(index)}>
-        Remove
+      {Education.removeButton}
       </Button>
     </div>
   );
