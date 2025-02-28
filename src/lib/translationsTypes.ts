@@ -38,9 +38,12 @@ export type EditorPage = {
     company: string;
     startDate: string;
     endDate: string;
-    dateMessage: string;
+    dateMessage1: string;
+    dateMessage2: string;
+    dateMessage3: string;
     description: string;
     addWorkExperienceButton: string;
+    removeButton:string
   };
   Education: {
     title: string;

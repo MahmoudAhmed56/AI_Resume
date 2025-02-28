@@ -36,7 +36,8 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
 
-const WorkExperienceForm = ({ resumeData, setResumeData }: EditorFormProps) => {
+const WorkExperienceForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
+  const {WorkExperience} = translation
   const form = useForm<WorkExperienceValues>({
     resolver: zodResolver(workExperienceSchema),
     defaultValues: {
@@ -77,9 +78,9 @@ const WorkExperienceForm = ({ resumeData, setResumeData }: EditorFormProps) => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Work experience</h2>
+        <h2 className="text-2xl font-semibold">{WorkExperience.title}</h2>
         <p className="text-sm text-muted-foreground">
-          Add as many work experiences as you like.
+        {WorkExperience.subtitle}
         </p>
       </div>
       <Form {...form}>
@@ -101,6 +102,7 @@ const WorkExperienceForm = ({ resumeData, setResumeData }: EditorFormProps) => {
                   index={index}
                   remove={remove}
                   key={field.id}
+                  WorkExperience={WorkExperience}
                 />
               ))}
             </SortableContext>
@@ -118,7 +120,7 @@ const WorkExperienceForm = ({ resumeData, setResumeData }: EditorFormProps) => {
                 })
               }
             >
-              Add work experience
+              {WorkExperience.addWorkExperienceButton}
             </Button>
           </div>
         </form>
@@ -132,6 +134,20 @@ interface WorkExperienceItemProps {
   form: UseFormReturn<WorkExperienceValues>;
   index: number;
   remove: (index: number) => void;
+  WorkExperience: {
+    title: string;
+    subtitle: string;
+    jobTitle: string;
+    company: string;
+    startDate: string;
+    endDate: string;
+    dateMessage1: string;
+    dateMessage2: string;
+    dateMessage3: string;
+    description: string;
+    addWorkExperienceButton: string;
+    removeButton: string;
+}
 }
 
 function WorkExperienceItem({
@@ -139,6 +155,7 @@ function WorkExperienceItem({
   form,
   index,
   remove,
+  WorkExperience
 }: WorkExperienceItemProps) {
   const {
     attributes,
@@ -161,7 +178,7 @@ function WorkExperienceItem({
       }}
     >
       <div className="flex justify-between gap-2">
-        <span className="font-semibold">Work experience {index + 1}</span>
+        <span className="font-semibold">{WorkExperience.title} {index + 1}</span>
         <GripHorizontal
           className="size-5 cursor-grab text-muted-foreground focus:outline-none"
           {...attributes}
@@ -174,7 +191,7 @@ function WorkExperienceItem({
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Job Title</FormLabel>
+              <FormLabel>{WorkExperience.jobTitle}</FormLabel>
               <FormControl>
                 <Input {...field} autoFocus />
               </FormControl>
@@ -189,7 +206,7 @@ function WorkExperienceItem({
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Company</FormLabel>
+              <FormLabel>{WorkExperience.company}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -205,7 +222,7 @@ function WorkExperienceItem({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>Start date</FormLabel>
+                <FormLabel>{WorkExperience.startDate}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -224,7 +241,7 @@ function WorkExperienceItem({
           render={({ field }) => {
             return (
               <FormItem>
-                <FormLabel>End date</FormLabel>
+                <FormLabel>{WorkExperience.endDate}</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
@@ -239,8 +256,7 @@ function WorkExperienceItem({
         />
       </div>
       <FormDescription>
-        Leave <span className="font-semibold">end date</span> empty if you are
-        currently working here.
+      {WorkExperience.dateMessage1} <span className="font-semibold">{WorkExperience.dateMessage2}</span> {WorkExperience.dateMessage3}
       </FormDescription>
       <FormField
         control={form.control}
@@ -248,7 +264,7 @@ function WorkExperienceItem({
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{WorkExperience.description}</FormLabel>
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
@@ -258,7 +274,7 @@ function WorkExperienceItem({
         }}
       />
       <Button variant="destructive" type="button" onClick={() => remove(index)}>
-        Remove
+      {WorkExperience.removeButton}
       </Button>
     </div>
   );

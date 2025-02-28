@@ -53,9 +53,12 @@
         "company": "الشركة",
         "startDate": "تاريخ البداية",
         "endDate": "تاريخ النهاية",
-        "dateMessage": "اترك تاريخ النهاية فارغًا إذا كنت لا تزال تعمل في هذه الوظيفة.",
+        "dateMessage1": "اترك",
+        "dateMessage2": "تاريخ النهاية",
+        "dateMessage3": "فارغًا إذا كنت لا تزال تعمل في هذه الوظيفة.",
         "description": "الوصف",
-        "addWorkExperienceButton": "إضافة خبرة عمل"
+        "addWorkExperienceButton": "إضافة خبرة عمل",
+        "removeButton":"إزالة"
       },
       "Education": {
         "title": "التعليم",
