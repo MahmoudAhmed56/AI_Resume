@@ -13,7 +13,7 @@ import { EditorFormProps } from "@/lib/types";
 import { EducationValues, educationSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GripHorizontal } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 import {
   DndContext,
@@ -34,7 +34,6 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
-import { EditorPage } from "@/lib/translationsTypes";
 
 
 
