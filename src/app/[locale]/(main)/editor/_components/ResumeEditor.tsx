@@ -21,6 +21,7 @@ interface ResumeEditorProps {
 const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
   const searchParams = useSearchParams();
   const {errors} = translation
+  const {resumePreview} = translation
   const [resumeData, setResumeData] = useState<ResumeValues>(
     resumeToEdit ? mapToResumeValues(resumeToEdit) : {},
   );
@@ -68,6 +69,7 @@ const ResumeEditor = ({ resumeToEdit,translation }: ResumeEditorProps) => {
             className={cn(showSmResumePreview && "flex")}
             resumeData={resumeData}
             setResumeData={setResumeData}
+            translation={resumePreview}
           />
         </div>
       </main>

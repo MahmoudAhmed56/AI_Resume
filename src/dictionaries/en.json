@@ -112,5 +112,12 @@
     "noTitle":"No title",
     "updated":"Updated on",
     "created":"Created"
+  },
+  "resumePreview":{
+    "summary":"Summary",
+    "workExperience":"Work experience",
+    "present":"Present",
+    "education":"Education",
+    "skills":"Skills"
   }
 }

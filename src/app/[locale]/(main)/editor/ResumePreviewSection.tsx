@@ -8,12 +8,20 @@ interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
   setResumeData: (data: ResumeValues) => void;
   className?: string;
+  translation:{
+    summary: string;
+    workExperience: string;
+    present: string;
+    education: string;
+    skills: string;
+}
 }
 
 const ResumePreviewSection = ({
   resumeData,
   setResumeData,
   className,
+  translation
 }: ResumePreviewSectionProps) => {
   return (
     <div className={cn("group relative hidden w-full md:flex md:w-1/2",className)}>
@@ -30,6 +38,7 @@ const ResumePreviewSection = ({
         <ResumePreview
           resumeData={resumeData}
           className="max-w-2xl shadow-md"
+          translation={translation}
         />
       </div>
     </div>

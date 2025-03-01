@@ -113,4 +113,11 @@ export interface AppContent {
     updated: string;
     created: string;
   };
+  resumePreview: {
+    summary: string;
+    workExperience: string;
+    present: string;
+    education: string;
+    skills: string;
+  };
 }

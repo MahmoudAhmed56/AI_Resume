@@ -6,22 +6,29 @@ import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
-import { Locale } from "@/i18n.config";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
-  locale: string | string[] | undefined
+  locale?: string | string[] | undefined;
+  translation: {
+    summary: string;
+    workExperience: string;
+    present: string;
+    education: string;
+    skills: string;
+  };
 }
 
 const ResumePreview = ({
   resumeData,
   className,
   contentRef,
-  locale
+  locale,
+  translation,
 }: ResumePreviewProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null); 
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const { width } = useDimensions(containerRef);
   return (
     <div
@@ -38,13 +45,25 @@ const ResumePreview = ({
         }}
         ref={contentRef}
         id="resumePreviewContent"
-        dir={locale === "ar"? "rtl":"ltr"}
+        dir={locale === "ar" ? "rtl" : "ltr"}
       >
         <PersonalInfoHeader resumeData={resumeData} />
-        <SummarySection resumeData={resumeData} />
-        <ExperienceSection resumeData={resumeData} />
-        <EducationSection resumeData={resumeData} />
-        <SkillsSections resumeData={resumeData} />
+        <SummarySection
+          resumeData={resumeData}
+          translation={translation}
+        />
+        <ExperienceSection
+          resumeData={resumeData}
+          translation={translation}
+        />
+        <EducationSection
+          resumeData={resumeData}
+          translation={translation}
+        />
+        <SkillsSections
+          resumeData={resumeData}
+          translation={translation}
+        />
       </div>
     </div>
   );
@@ -54,6 +73,13 @@ export default ResumePreview;
 
 interface ResumeSectionProps {
   resumeData: ResumeValues;
+  translation?: {
+    summary: string;
+    workExperience: string;
+    present: string;
+    education: string;
+    skills: string;
+  }
 }
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   const {
@@ -83,8 +109,8 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
       {photoSrc && (
         <Image
           src={photoSrc}
-          width={100}
-          height={100}
+          width={200}
+          height={200}
           alt="author photo"
           className="aspect-square object-cover"
           style={{
@@ -134,7 +160,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   );
 }
 
-function SummarySection({ resumeData }: ResumeSectionProps) {
+function SummarySection({ resumeData,translation }: ResumeSectionProps) {
   const { summary, colorHex } = resumeData;
   if (!summary) return null;
   return (
@@ -152,7 +178,7 @@ function SummarySection({ resumeData }: ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          Summary
+          {translation?.summary}
         </p>
         <div className="whitespace-pre-line text-sm">{summary}</div>
       </div>
@@ -160,7 +186,7 @@ function SummarySection({ resumeData }: ResumeSectionProps) {
   );
 }
 
-function ExperienceSection({ resumeData }: ResumeSectionProps) {
+function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
   const { workExperiences, colorHex } = resumeData;
   const workExperiencesNotEmpty = workExperiences?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -182,7 +208,7 @@ function ExperienceSection({ resumeData }: ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          Work experience
+          {translation?.workExperience}
         </p>
         {workExperiencesNotEmpty.map((exp, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
@@ -196,7 +222,7 @@ function ExperienceSection({ resumeData }: ResumeSectionProps) {
               {exp.startDate && (
                 <span>
                   {formatDate(exp.startDate, "MM/yyyy")} -{" "}
-                  {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : "Present"}
+                  {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : `${translation?.present}`}
                 </span>
               )}
             </div>
@@ -209,7 +235,7 @@ function ExperienceSection({ resumeData }: ResumeSectionProps) {
   );
 }
 
-function EducationSection({ resumeData }: ResumeSectionProps) {
+function EducationSection({ resumeData,translation }: ResumeSectionProps) {
   const { educations, colorHex } = resumeData;
   const educationsNotEmpty = educations?.filter(
     (edu) => Object.values(edu).filter(Boolean).length > 0,
@@ -231,7 +257,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          Education
+          {translation?.education}
         </p>
         {educationsNotEmpty.map((edu, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
@@ -257,7 +283,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
   );
 }
 
-function SkillsSections({ resumeData }: ResumeSectionProps) {
+function SkillsSections({ resumeData,translation }: ResumeSectionProps) {
   const { skills, colorHex, borderStyle } = resumeData;
   if (!skills?.length) return null;
   return (
@@ -275,7 +301,7 @@ function SkillsSections({ resumeData }: ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          Skills
+          {translation?.skills}
         </p>
         <div className="flex break-inside-avoid flex-wrap gap-2">
           {skills.map((skill, index) => (

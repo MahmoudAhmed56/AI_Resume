@@ -113,5 +113,14 @@
     "noTitle": "لا يوجد عنوان",
     "updated": "تم التحديث في",
     "created": "تم الإنشاء"
+},
+"resumePreview":{
+  "resumePreview": {
+    "summary": "ملخص",
+    "workExperience": "الخبرة العملية",
+    "present": "حالي",
+    "education": "التعليم",
+    "skills": "المهارات"
+  }
 }
 }
