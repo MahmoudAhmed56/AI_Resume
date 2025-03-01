@@ -1,11 +1,12 @@
 import { Prisma } from "@prisma/client";
 import { ResumeValues } from "./validation";
-import { EditorPage } from "./translationsTypes";
+import { AppContent } from "./translationsTypes";
+
 
 export interface EditorFormProps{
   resumeData: ResumeValues;
   setResumeData: (data:ResumeValues)=>void;
-  translation: EditorPage
+  translation: AppContent
 }
 
 export const resumeDataInclude ={
