@@ -5,6 +5,7 @@ import UserButton from "./_components/UserButton";
 import ThemeToggle from "@/components/ThemeToggle";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import getTrans from "@/lib/translation";
+import LanguageSwitcher from "./_components/LanguageSwitcher";
 
 
 
@@ -29,6 +30,7 @@ const Navbar = async () => {
         <div className="flex items-center gap-3">
           <ThemeToggle/>
           <UserButton/>
+          <LanguageSwitcher />
         </div>
       </div>
     </header>
