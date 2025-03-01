@@ -7,11 +7,8 @@ import { createCustomerPortalSession } from "./actions";
 type Translation  ={
   somethingWentWrong: string;
   manageSubscription: string;
-  canceledSubscription: string;
-  billing: string;
-  yourCurrentPlan: string;
 }
-export default function ManageSubscriptionButton(translation:any|Translation) {
+export default function ManageSubscriptionButton({somethingWentWrong,manageSubscription}:Translation) {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
@@ -25,7 +22,7 @@ export default function ManageSubscriptionButton(translation:any|Translation) {
       console.error(error);
       toast({
         variant: "destructive",
-        description: `${translation.somethingWentWrong}`,
+        description: `${somethingWentWrong}`,
       });
     } finally {
       setLoading(false);
@@ -34,7 +31,7 @@ export default function ManageSubscriptionButton(translation:any|Translation) {
 
   return (
     <LoadingButton onClick={handleClick} loading={loading}>
-      {translation.manageSubscription}
+      {manageSubscription}
     </LoadingButton>
   );
 }

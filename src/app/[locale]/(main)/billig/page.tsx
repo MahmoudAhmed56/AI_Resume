@@ -49,7 +49,7 @@ export default async function Page() {
               {formatDate(subscription.stripeCurrentPeriodEnd, "MMMM dd, yyyy")}
             </p>
           )}
-          <ManageSubscriptionButton translation={billingPage} />
+          <ManageSubscriptionButton manageSubscription={billingPage.manageSubscription} somethingWentWrong={billingPage.somethingWentWrong} />
         </>
       ) : (
         <GetSubscriptionButton />
