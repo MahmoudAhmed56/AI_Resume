@@ -64,7 +64,7 @@ const PremiumModal = ({
     >
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>{resumeBuilder}</DialogTitle>
+          <DialogTitle className="text-center">{resumeBuilder}</DialogTitle>
         </DialogHeader>
         <div className="space-y-6">
           <p>{getPremium}</p>

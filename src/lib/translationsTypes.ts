@@ -127,7 +127,12 @@ export interface AppContent {
     getPremium: string;
     premium: string;
     premiumPlus: string;
-    getPremiumButton:string;
+    getPremiumButton: string;
     getPremiumPlus: string;
+  };
+  billing: {
+    title: string;
+    subtitle: string;
+    button: string;
   };
 }

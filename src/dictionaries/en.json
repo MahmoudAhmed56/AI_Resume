@@ -129,5 +129,10 @@
     "premiumPlus": "Premium Plus",
     "getPremiumButton":"Get Premium",
     "getPremiumPlus": "Get Premium Plus"
+  },
+  "billing":{
+    "title":"Billing Success",
+    "subtitle":"The checkout was successful and your Pro account has been activated. Enjoy!",
+    "button":"Go to resumes"
   }
 }
