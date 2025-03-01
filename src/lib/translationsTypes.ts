@@ -122,4 +122,12 @@ export interface AppContent {
     education: string;
     skills: string;
   };
+  premiumModal: {
+    resumeBuilder: string;
+    getPremium: string;
+    premium: string;
+    premiumPlus: string;
+    getPremiumButton:string;
+    getPremiumPlus: string;
+  };
 }

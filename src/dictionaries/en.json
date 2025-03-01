@@ -5,8 +5,8 @@
     "secondTitle": "Perfect Resume",
     "thirdTitle": "in Minutes",
     "subParagraph1": "Our",
-    "subParagraph2":"AI resume builder",
-    "subParagraph3":"helps you design a professional resume, even if you're not very smart.",
+    "subParagraph2": "AI resume builder",
+    "subParagraph3": "helps you design a professional resume, even if you're not very smart.",
     "button": "Get started"
   },
   "resumesPage": {
@@ -77,12 +77,12 @@
       "title": "Skills",
       "subtitle": "What are you good at?",
       "textareaMessage": "Separate each skill with a comma.",
-      "placeholder":"e.g. marketing, web developer, graphic design, ..."
+      "placeholder": "e.g. marketing, web developer, graphic design, ..."
     },
     "Summary": {
       "title": "Professional summary",
       "subtitle": "Write a short introduction for your resume.",
-      "placeholder":"A brief, engaging text about yourself"
+      "placeholder": "A brief, engaging text about yourself"
     },
     "Footer": {
       "previousStep": "Previous step",
@@ -111,15 +111,23 @@
     "deleteResume": "Delete resume?",
     "dialogDescription": "This will permanently delete this resume. This action cannot be undone.",
     "cancel": "Cancel",
-    "noTitle":"No title",
-    "updated":"Updated on",
-    "created":"Created"
+    "noTitle": "No title",
+    "updated": "Updated on",
+    "created": "Created"
   },
-  "resumePreview":{
-    "summary":"Summary",
-    "workExperience":"Work experience",
-    "present":"Present",
-    "education":"Education",
-    "skills":"Skills"
+  "resumePreview": {
+    "summary": "Summary",
+    "workExperience": "Work experience",
+    "present": "Present",
+    "education": "Education",
+    "skills": "Skills"
+  },
+  "premiumModal": {
+    "resumeBuilder": "Resume Builder AI Premium",
+    "getPremium": "Get a premium subscription to unlock more features.",
+    "premium": "Premium",
+    "premiumPlus": "Premium Plus",
+    "getPremiumButton":"Get Premium",
+    "getPremiumPlus": "Get Premium Plus"
   }
 }
