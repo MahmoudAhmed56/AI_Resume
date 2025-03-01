@@ -98,6 +98,8 @@ export default function useAutoSaveResume(resumeData: ResumeValues,errors:{
     resumeId,
     searchParams,
     toast,
+    errors.couldNotSave,
+    errors.retry
   ]);
 
   return {

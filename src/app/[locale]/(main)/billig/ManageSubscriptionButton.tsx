@@ -4,14 +4,14 @@ import LoadingButton from "@/components/LoadingButton";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { createCustomerPortalSession } from "./actions";
-interface BillingPage {
+type Translation  ={
   somethingWentWrong: string;
   manageSubscription: string;
   canceledSubscription: string;
   billing: string;
   yourCurrentPlan: string;
 }
-export default function ManageSubscriptionButton(translation:BillingPage) {
+export default function ManageSubscriptionButton(translation:any|Translation) {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
