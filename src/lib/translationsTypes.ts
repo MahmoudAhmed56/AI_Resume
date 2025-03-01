@@ -77,10 +77,12 @@ export interface AppContent {
       title: string;
       subtitle: string;
       textareaMessage: string;
+      placeholder: string;
     };
     Summary: {
       title: string;
       subtitle: string;
+      placeholder: string;
     };
     Footer: {
       previousStep: string;

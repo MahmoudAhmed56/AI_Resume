@@ -46,7 +46,7 @@ const SkillsForm = ({resumeData,setResumeData,translation}:EditorFormProps) => {
             <FormControl>
               <Textarea
               {...field}
-              placeholder="e.g. React.js, Node.js, graphic design, ..."
+              placeholder={`${Skills.placeholder}`}
               onChange={(e)=>{
                 const skills = e.target.value.split(",")
                 field.onChange(skills)

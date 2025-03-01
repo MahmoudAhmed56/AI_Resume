@@ -109,8 +109,8 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
       {photoSrc && (
         <Image
           src={photoSrc}
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           alt="author photo"
           className="aspect-square object-cover"
           style={{
@@ -161,6 +161,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
 }
 
 function SummarySection({ resumeData,translation }: ResumeSectionProps) {
+  
   const { summary, colorHex } = resumeData;
   if (!summary) return null;
   return (

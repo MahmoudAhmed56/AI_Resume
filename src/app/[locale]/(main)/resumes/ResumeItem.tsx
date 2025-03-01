@@ -30,6 +30,13 @@ import { useParams } from "next/navigation";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
+  resumePreviewTrans:{
+    summary: string;
+    workExperience: string;
+    present: string;
+    education: string;
+    skills: string;
+}
   translation:{
     delete: string;
     print: string;
@@ -43,7 +50,7 @@ interface ResumeItemProps {
   }
 }
 
-const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
+const ResumeItem = ({ resume,translation,resumePreviewTrans }: ResumeItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({
     contentRef,
@@ -76,7 +83,7 @@ const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
           <ResumePreview
             contentRef={contentRef}
             resumeData={mapToResumeValues(resume)}
-            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg" locale={locale}          />
+            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg" locale={locale} translation={resumePreviewTrans}          />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>

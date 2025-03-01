@@ -44,7 +44,7 @@ const SummaryForm = ({ resumeData, setResumeData,translation }: EditorFormProps)
               <FormControl>
                 <Textarea 
                 {...field}
-                placeholder="A brief, engaging text about yourself"
+                placeholder={`${Summary.placeholder}`}
                 />
               </FormControl>
               <FormMessage />
