@@ -6,17 +6,20 @@ import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
+import { Locale } from "@/i18n.config";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
+  locale: string | string[] | undefined
 }
 
 const ResumePreview = ({
   resumeData,
   className,
   contentRef,
+  locale
 }: ResumePreviewProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null); 
   const { width } = useDimensions(containerRef);
@@ -35,6 +38,7 @@ const ResumePreview = ({
         }}
         ref={contentRef}
         id="resumePreviewContent"
+        dir={locale === "ar"? "rtl":"ltr"}
       >
         <PersonalInfoHeader resumeData={resumeData} />
         <SummarySection resumeData={resumeData} />

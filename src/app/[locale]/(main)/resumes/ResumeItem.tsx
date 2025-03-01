@@ -49,6 +49,7 @@ const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
     contentRef,
     documentTitle: resume.title || "Resume",
   });
+  const {locale} = useParams()   
   const wasUpdated = resume.updatedAt !== resume.createdAt;
   return (
     <div className="group relative rounded-lg border border-transparent bg-secondary p-3 transition-colors hover:border-border">
@@ -75,8 +76,7 @@ const ResumeItem = ({ resume,translation }: ResumeItemProps) => {
           <ResumePreview
             contentRef={contentRef}
             resumeData={mapToResumeValues(resume)}
-            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg"
-          />
+            className="overflow-hidden shadow-sm transition-shadow group-hover:shadow-lg" locale={locale}          />
           <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent" />
         </Link>
       </div>

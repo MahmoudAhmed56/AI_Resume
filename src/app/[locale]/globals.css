@@ -75,6 +75,10 @@ body {
     zoom: 1 !important;
     padding: 0;
   }
+  [dir="rtl"] #resumePreviewContent {
+    direction: rtl;
+    text-align: right;
+  }
 }
 
 #resumePreviewContent {
