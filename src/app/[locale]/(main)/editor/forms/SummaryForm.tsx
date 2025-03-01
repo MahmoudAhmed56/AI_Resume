@@ -7,7 +7,8 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const SummaryForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
-  const {Summary} = translation
+  const {editorPage} = translation
+  const {Summary} = editorPage
   const form = useForm<SummaryValues>({
     resolver: zodResolver(summarySchema),
     defaultValues: {

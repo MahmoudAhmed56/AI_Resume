@@ -39,7 +39,8 @@ import { cn } from "@/lib/utils";
 
 const EducationForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
 
-  const {Education} = translation
+  const {editorPage} = translation
+  const {Education} = editorPage 
   const form = useForm<EducationValues>({
     resolver: zodResolver(educationSchema),
     defaultValues: {

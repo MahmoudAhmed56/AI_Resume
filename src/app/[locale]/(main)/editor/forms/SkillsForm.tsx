@@ -8,7 +8,8 @@ import { useForm } from "react-hook-form"
 
 
 const SkillsForm = ({resumeData,setResumeData,translation}:EditorFormProps) => {
-  const {Skills} = translation
+  const {editorPage} = translation
+  const {Skills} = editorPage
   const form = useForm<SkillsValues>({
     resolver:zodResolver(skillsSchema),
     defaultValues:{

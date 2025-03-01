@@ -15,7 +15,8 @@ import { useEffect } from "react";
 import { EditorFormProps } from "@/lib/types";
 
 const GeneralInfoForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
-  const {GeneralInfo} = translation
+  const {editorPage} = translation
+  const {GeneralInfo} = editorPage
   const form = useForm<GeneralInfoValues>({
     resolver: zodResolver(generalInfoSchema),
     defaultValues: {

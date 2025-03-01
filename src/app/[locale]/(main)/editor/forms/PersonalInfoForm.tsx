@@ -15,7 +15,8 @@ import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 
 const PersonalInfoForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
-  const {PersonalInfo} = translation
+  const {editorPage} = translation
+  const {PersonalInfo} = editorPage
   const form = useForm<PersonalInfoValues>({
     resolver: zodResolver(personalInfoSchema),
     defaultValues: {

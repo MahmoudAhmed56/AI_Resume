@@ -37,7 +37,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
 
 const WorkExperienceForm = ({ resumeData, setResumeData,translation }: EditorFormProps) => {
-  const {WorkExperience} = translation
+  const {editorPage} = translation
+  const {WorkExperience} = editorPage
   const form = useForm<WorkExperienceValues>({
     resolver: zodResolver(workExperienceSchema),
     defaultValues: {
