@@ -63,6 +63,19 @@ export const educationSchema = z.object({
 
 export type EducationValues = z.infer<typeof educationSchema>;
 
+export const languageSchema = z.object({
+  languages: z
+  .array(
+    z.object({
+      language: optionalString,
+      level: optionalString,
+    })
+    
+  ).optional(),
+})
+
+export type LanguageValues = z.infer<typeof educationSchema>;
+
 export const skillsSchema = z.object({
   skills: z.array(z.string().trim()).optional(),
 });
@@ -81,6 +94,7 @@ export const resumeSchema = z.object({
   ...educationSchema.shape,
   ...skillsSchema.shape,
   ...summarySchema.shape,
+  ...languageSchema.shape,
   colorHex: optionalString,
   borderStyle: optionalString,
 });
