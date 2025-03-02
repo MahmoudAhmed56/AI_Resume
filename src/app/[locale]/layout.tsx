@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { Languages, Locale } from "@/i18n.config";
-import { clerkLocalization } from "@/lib/clerk-localization";
+import { enUS, arSA } from "@clerk/localizations";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default async function RootLayout({
   const locale = (await params).locale
   return (
     <ClerkProvider
-    localization={clerkLocalization[locale]}
+    localization={locale === "ar" ? arSA : enUS}
   appearance={{
     variables: {
       fontFamily: locale === Languages.ARABIC 
