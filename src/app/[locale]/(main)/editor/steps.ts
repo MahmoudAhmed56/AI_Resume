@@ -4,6 +4,7 @@ import PersonalInfoForm from "./forms/PersonalInfoForm";
 import WorkExperienceForm from "./forms/WorkExperienceForm";
 import EducationForm from "./forms/EducationForm";
 import SkillsForm from "./forms/SkillsForm";
+import LanguagesForm from "./forms/LanguagesForm";
 import SummaryForm from "./forms/SummaryForm";
 
 export const steps: {
@@ -17,5 +18,6 @@ export const steps: {
   {title:{English:"Work experience",Arabic:"الخبرة العملية"},component: WorkExperienceForm,key:"Work-experience"},
   {title:{English:"Education",Arabic:"التعليم"},component: EducationForm,key:"Education"},
   {title:{English:"Skills",Arabic:"المهارات"},component: SkillsForm,key:"Skills"},
+  {title:{English:"Languages",Arabic:"اللغات"},component: LanguagesForm,key:"Languages"},
   {title:{English:"Summary",Arabic:"الملخص"},component: SummaryForm,key:"Summary"},
 ];
