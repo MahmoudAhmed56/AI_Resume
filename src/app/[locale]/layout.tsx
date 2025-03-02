@@ -5,7 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import { Languages, Locale } from "@/i18n.config";
-
+import { clerkLocalization } from "@/lib/clerk-localization";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,9 +16,7 @@ export const metadata: Metadata = {
   description:
     "AI Resume Builder is the easiest way to create professional resume that will help you land your dream job.",
 };
-export async function generateStaticParams() {
-  return [{ locale: Languages.ARABIC }, { locale: Languages.ENGLISH }];
-}
+
 export default async function RootLayout({
   children,
   params
@@ -28,8 +26,22 @@ export default async function RootLayout({
 }>) {
   const locale = (await params).locale
   return (
-    <ClerkProvider>
-      <html lang={locale} dir={locale === Languages.ARABIC ? "rtl" : "ltr"} suppressHydrationWarning>
+    <ClerkProvider
+    localization={clerkLocalization[locale]}
+  appearance={{
+    variables: {
+      fontFamily: locale === Languages.ARABIC 
+        ? "'Cairo', sans-serif" 
+        : "'Inter', sans-serif"
+    }
+  }}
+  afterSignOutUrl={`/${locale}`}
+    >
+      <html 
+        lang={locale} 
+        dir={locale === Languages.ARABIC ? "rtl" : "ltr"} 
+        suppressHydrationWarning
+      >
         <body className={inter.className}>
           <ThemeProvider
             attribute="class"

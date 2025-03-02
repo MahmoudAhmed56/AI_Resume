@@ -15,7 +15,7 @@ const Navbar = async () => {
   return (
     <header className="shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 p-3">
-        <Link href="/resumes" className="flex items-center gap-2">
+        <Link href={`/${locale}/resumes`} className="flex items-center gap-2">
           <Image
             src={logo}
             alt={"logo"}
@@ -28,9 +28,9 @@ const Navbar = async () => {
           </span>
         </Link>
         <div className="flex items-center gap-3">
+          <LanguageSwitcher />
           <ThemeToggle/>
           <UserButton/>
-          <LanguageSwitcher />
         </div>
       </div>
     </header>

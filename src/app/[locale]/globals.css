@@ -89,3 +89,24 @@ body {
   size: A4;
   margin: 0.6cm;
 }
+[dir='rtl'] * {
+  direction: rtl;
+  text-align: right;
+  font-family: var(--font-cairo);
+}
+[dir="rtl"] {
+  .cl-internal-b3fm6y {
+    right: unset !important;
+    left: 1.5rem !important;
+  }
+
+  .cl-formFieldAction__forgotPassword {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  .cl-footerActionLink {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+  }
+}

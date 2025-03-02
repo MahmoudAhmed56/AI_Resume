@@ -14,6 +14,7 @@ const isPublicRoute = createRouteMatcher([
 
 export default clerkMiddleware(async (auth, request) => {
   // Handle locale detection first
+
   const pathname = request.nextUrl.pathname;
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
@@ -21,8 +22,7 @@ export default clerkMiddleware(async (auth, request) => {
 //
 const requestHeaders = new Headers(request.headers);
 requestHeaders.set("x-url", request.url);
-
-//
+//z
   // Redirect to locale-specific route if missing
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
