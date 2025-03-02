@@ -10,7 +10,7 @@ import path from "path";
 
 export const saveResume = async (values: ResumeValues) => {
   const { id } = values;
-  const { photo, workExperiences, educations, ...resumeValues } =
+  const { photo, workExperiences, educations,languages, ...resumeValues } =
     resumeSchema.parse(values);
   const { userId } = await auth();
   if (!userId) {
@@ -65,6 +65,12 @@ export const saveResume = async (values: ResumeValues) => {
             endDate: exp.endDate ? new Date(exp.endDate) : undefined,
           })),
         },
+        languages: {
+          deleteMany: {},
+          create: languages?.map((lang) => ({
+            ...lang,
+          })),
+        },
         educations: {
           deleteMany: {},
           create: educations?.map((edu) => ({
@@ -86,6 +92,11 @@ export const saveResume = async (values: ResumeValues) => {
             ...exp,
             startDate: exp.startDate ? new Date(exp.startDate) : undefined,
             endDate: exp.endDate ? new Date(exp.endDate) : undefined,
+          })),
+        },
+        languages: {
+          create: languages?.map((exp) => ({
+            ...exp,
           })),
         },
         educations: {

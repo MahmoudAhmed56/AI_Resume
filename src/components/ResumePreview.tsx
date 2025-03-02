@@ -64,13 +64,16 @@ const ResumePreview = ({
           resumeData={resumeData}
           translation={translation}
         />
+        <LanguagesSections
+          resumeData={resumeData}
+          translation={translation}
+        />
       </div>
     </div>
   );
 };
 
 export default ResumePreview;
-
 interface ResumeSectionProps {
   resumeData: ResumeValues;
   translation?: {
@@ -81,6 +84,41 @@ interface ResumeSectionProps {
     skills: string;
   }
 }
+function LanguagesSections({resumeData}:ResumeSectionProps) {
+  const { languages, colorHex } = resumeData;
+  const languagesNotEmpty = languages?.filter(
+    (exp) => Object.values(exp).filter(Boolean).length > 0,
+  );
+
+  if (!languagesNotEmpty?.length) return null;
+  return (
+    <>
+      <hr
+        className="border-2"
+        style={{
+          borderColor: colorHex,
+        }}
+      />
+      <div className="space-y-3">
+        <p
+          className="text-lg font-semibold"
+          style={{
+            color: colorHex,
+          }}
+        >
+          languages
+        </p>
+        {languagesNotEmpty.map((lang, index) => (
+          <div key={index} className="break-inside-avoid space-y-1">
+            <p className="text-xs font-semibold">{lang.language}: <span className="whitespace-pre-line text-xs">{lang.level}</span></p>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   const {
     phone,

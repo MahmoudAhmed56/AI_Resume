@@ -44,6 +44,10 @@ export function mapToResumeValues(data:ResumeServerData):ResumeValues {
       startDate: edu.startDate?.toISOString().split("T")[0],
       endDate: edu.endDate?.toISOString().split("T")[0],
     })),
+    languages: data.languages.map((lang) => ({
+      language: lang.language || undefined,
+      level: lang.level || undefined,
+    })),
     skills: data.skills,
     borderStyle: data.borderStyle,
     colorHex: data.colorHex,

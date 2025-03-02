@@ -74,7 +74,7 @@ export const languageSchema = z.object({
   ).optional(),
 })
 
-export type LanguageValues = z.infer<typeof educationSchema>;
+export type LanguageValues = z.infer<typeof languageSchema>;
 
 export const skillsSchema = z.object({
   skills: z.array(z.string().trim()).optional(),
