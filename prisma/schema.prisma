@@ -35,6 +35,7 @@ model Resume {
 
   workExperiences WorkExperience[]
   educations      Education[]
+  languages       Language[]
   skills          String[]
 
   @@map("resumes")
@@ -44,6 +45,8 @@ model Language {
   id       String  @id @default(cuid())
   language String?
   level    String?
+  resume   Resume? @relation(fields: [resumeId], references: [id])
+  resumeId String?
 
   @@map("languages")
 }
