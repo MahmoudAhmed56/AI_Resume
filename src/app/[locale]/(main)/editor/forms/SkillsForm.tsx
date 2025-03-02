@@ -48,7 +48,7 @@ const SkillsForm = ({resumeData,setResumeData,translation}:EditorFormProps) => {
               {...field}
               placeholder={`${Skills.placeholder}`}
               onChange={(e)=>{
-                const skills = e.target.value.split(",")
+                const skills = e.target.value.split(/[,،]/)
                 field.onChange(skills)
               }}
               />
