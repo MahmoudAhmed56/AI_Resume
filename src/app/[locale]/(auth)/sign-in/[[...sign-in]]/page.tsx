@@ -8,7 +8,7 @@ const Page = async () => {
       <SignIn 
       signUpUrl={`/${locale}/sign-up`}
       fallbackRedirectUrl={`/${locale}/resumes`}
-      forceRedirectUrl={`/${locale}/resumes`}
+      signUpForceRedirectUrl={`/${locale}/resumes`}
       appearance={{
         elements: {
           card: "shadow-none border",
