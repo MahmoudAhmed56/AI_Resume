@@ -15,6 +15,7 @@ interface ResumePreviewSectionProps {
     present: string;
     education: string;
     skills: string;
+    languages: string;
 }
 }
 
