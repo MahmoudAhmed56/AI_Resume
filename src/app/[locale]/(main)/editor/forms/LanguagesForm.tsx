@@ -18,7 +18,6 @@ import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 const LanguagesForm = ({
   resumeData,
   setResumeData,
-  translation,
 }: EditorFormProps) => {
   const form = useForm<LanguageValues>({
     resolver: zodResolver(languageSchema),
@@ -43,7 +42,7 @@ const LanguagesForm = ({
     return unsubscribe;
   }, [form, resumeData, setResumeData]);
 
-  const { fields, append, remove, move } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: "languages",
   });
@@ -91,7 +90,7 @@ interface LanguageItemItemProps {
   index: number;
   remove: (index: number) => void;
 }
-const LanguageItem = ({ form, id, index, remove }: LanguageItemItemProps) => {
+const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
   return (
     <div className="grid grid-cols-2 gap-3">
       <FormField
