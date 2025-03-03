@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { EditorFormProps } from "@/lib/types";
 import { LanguageValues, languageSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { X } from "lucide-react";
 import { useEffect } from "react";
 import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 
@@ -92,7 +93,7 @@ interface LanguageItemItemProps {
 }
 const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className="grid sm500min:flex sm500:grid-cols-2 gap-3">
       <FormField
         control={form.control}
         name={`languages.${index}.language`}
@@ -119,8 +120,8 @@ const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
           </FormItem>
         )}
       />
-      <Button variant="destructive" type="button" onClick={() => remove(index)}>
-        remove
+      <Button variant="destructive" className="self-end" type="button" size={"icon"} onClick={() => remove(index)}>
+        <X/>
       </Button>
     </div>
   );

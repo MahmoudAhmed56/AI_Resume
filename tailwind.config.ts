@@ -56,7 +56,17 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		}
-  	}
+  	},
+		screens: {
+			'sm600': {'max': '600px'},
+			'sm500': {'max': '500px'},
+			'sm400': {'max': '400px'},
+			'sm300': {'max': '300px'},
+      'sm600min': '600px',
+      'sm500min': '500px',
+      'sm400min': '400px',
+      'sm300min': '300px',
+    }
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
