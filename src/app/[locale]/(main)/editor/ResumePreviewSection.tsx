@@ -4,19 +4,13 @@ import ColorPicker from "./ColorPicker";
 import BorderStyleButton from "./BorderStyleButton";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
+import { resumePreviewTrans } from "@/lib/translationsTypes";
 
 interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
   setResumeData: (data: ResumeValues) => void;
   className?: string;
-  translation:{
-    summary: string;
-    workExperience: string;
-    present: string;
-    education: string;
-    skills: string;
-    languages: string;
-}
+  translation: resumePreviewTrans;
 }
 
 const ResumePreviewSection = ({

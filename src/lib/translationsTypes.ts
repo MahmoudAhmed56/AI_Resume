@@ -145,3 +145,11 @@ export interface AppContent {
     button: string;
   };
 }
+export interface resumePreviewTrans {
+  summary: string;
+  workExperience: string;
+  present: string;
+  education: string;
+  skills: string;
+  languages: string;
+};

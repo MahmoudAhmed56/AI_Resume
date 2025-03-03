@@ -27,17 +27,11 @@ import {
 import LoadingButton from "@/components/LoadingButton";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "next/navigation";
+import { resumePreviewTrans } from "@/lib/translationsTypes";
 
 interface ResumeItemProps {
   resume: ResumeServerData;
-  resumePreviewTrans:{
-    summary: string;
-    workExperience: string;
-    present: string;
-    education: string;
-    skills: string;
-    languages: string;
-}
+  resumePreviewTrans:resumePreviewTrans;
   translation:{
     delete: string;
     print: string;

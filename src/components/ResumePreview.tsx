@@ -6,20 +6,14 @@ import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
+import { resumePreviewTrans } from "@/lib/translationsTypes";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
   locale?: string | string[] | undefined;
-  translation: {
-    summary: string;
-    workExperience: string;
-    present: string;
-    education: string;
-    skills: string;
-    languages: string;
-  };
+  translation: resumePreviewTrans;
 }
 
 const ResumePreview = ({
@@ -77,14 +71,7 @@ const ResumePreview = ({
 export default ResumePreview;
 interface ResumeSectionProps {
   resumeData: ResumeValues;
-  translation?: {
-    summary: string;
-    workExperience: string;
-    present: string;
-    education: string;
-    skills: string;
-    languages:string;
-  }
+  translation?: resumePreviewTrans;
 }
 function LanguagesSections({resumeData,translation}:ResumeSectionProps) {
   const { languages, colorHex } = resumeData;
