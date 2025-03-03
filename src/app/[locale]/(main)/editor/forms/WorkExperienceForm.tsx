@@ -52,7 +52,9 @@ const WorkExperienceForm = ({ resumeData, setResumeData,translation }: EditorFor
       setResumeData({
         ...resumeData,
         workExperiences:
-          values.workExperiences?.filter((exp) => exp !== undefined) || [],
+          values.workExperiences?.filter((ex): ex is Exclude<typeof ex, undefined> => 
+          ex !== undefined
+        )
       });
     });
     return unsubscribe;

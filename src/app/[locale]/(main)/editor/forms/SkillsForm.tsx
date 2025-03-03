@@ -22,7 +22,9 @@ const SkillsForm = ({resumeData,setResumeData,translation}:EditorFormProps) => {
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        skills: values.skills?.filter((skill) => skill !== undefined).map((skill)=>skill?.trim()).filter(skill=>skill !== "") || []
+        skills: values.skills?.filter((skill) => skill !== undefined).map((skill)=>skill?.trim()).filter((skill): skill is Exclude<typeof skill, undefined> => 
+        skill !== ""
+      )
       });
     });
     return unsubscribe;
