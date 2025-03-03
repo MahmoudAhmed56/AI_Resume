@@ -26,7 +26,8 @@
       "WorkExperience": "الخبرة العملية",
       "Education": "التعليم",
       "Skills": "المهارات",
-      "Summary": "الملخص"
+      "Summary": "الملخص",
+      "Languages":"اللغات"
     },
     "GeneralInfo": {
       "title": "معلومات عامة",
@@ -92,6 +93,13 @@
       "saving": "جاري الحفظ...",
       "showInputForm": "إظهار نموذج الإدخال",
       "showResumePreview": "إظهار معاينة السيرة الذاتية"
+    },
+    "Languages": {
+      "title": "اللغات",
+      "subtitle": "أضف عددًا غير محدود من اللغات كما تريد.",
+      "language": "اللغة",
+      "level": "المستوى",
+      "addLanguageButton": "إضافة لغة"
     }
   },
   "billingPage": {
@@ -121,7 +129,8 @@
     "workExperience": "الخبرة العملية",
     "present": "الآن",
     "education": "التعليم",
-    "skills": "المهارات"
+    "skills": "المهارات",
+    "languages":"اللغات"
   },
   "premiumModal": {
     "resumeBuilder": "منشئ السيرة الذاتية بالذكاء الاصطناعي - النسخة المميزة",

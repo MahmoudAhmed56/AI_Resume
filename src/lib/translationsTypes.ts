@@ -26,6 +26,7 @@ export interface AppContent {
       Education: string;
       Skills: string;
       Summary: string;
+      Languages: string;
     };
     GeneralInfo: {
       title: string;
@@ -92,6 +93,13 @@ export interface AppContent {
       showInputForm: string;
       showResumePreview: string;
     };
+    Languages: {
+      title: string;
+      subtitle: string;
+      language: string;
+      level: string;
+      addLanguageButton: string;
+    };
   };
   billingPage: {
     somethingWentWrong: string;
@@ -121,6 +129,7 @@ export interface AppContent {
     present: string;
     education: string;
     skills: string;
+    languages: string;
   };
   premiumModal: {
     resumeBuilder: string;

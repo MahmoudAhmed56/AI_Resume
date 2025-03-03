@@ -25,7 +25,8 @@
       "WorkExperience": "Work experience",
       "Education": "Education",
       "Skills": "Skills",
-      "Summary": "Summary"
+      "Summary": "Summary",
+      "Languages":"Languages"
     },
     "GeneralInfo": {
       "title": "General info",
@@ -91,8 +92,13 @@
       "saving": "Saving...",
       "showInputForm": "Show input form",
       "showResumePreview": "Show resume preview"
-    },"Languages":{
-      
+    },
+    "Languages": {
+      "title": "Languages",
+      "subtitle": "Add as many languages as you like.",
+      "language": "Language",
+      "level": "Level",
+      "addLanguageButton": "Add language"
     }
   },
   "billingPage": {
@@ -122,19 +128,20 @@
     "workExperience": "Work experience",
     "present": "Present",
     "education": "Education",
-    "skills": "Skills"
+    "skills": "Skills",
+    "languages":"Languages"
   },
   "premiumModal": {
     "resumeBuilder": "Resume Builder AI Premium",
     "getPremium": "Get a premium subscription to unlock more features.",
     "premium": "Premium",
     "premiumPlus": "Premium Plus",
-    "getPremiumButton":"Get Premium",
+    "getPremiumButton": "Get Premium",
     "getPremiumPlus": "Get Premium Plus"
   },
-  "billing":{
-    "title":"Billing Success",
-    "subtitle":"The checkout was successful and your Pro account has been activated. Enjoy!",
-    "button":"Go to resumes"
+  "billing": {
+    "title": "Billing Success",
+    "subtitle": "The checkout was successful and your Pro account has been activated. Enjoy!",
+    "button": "Go to resumes"
   }
 }

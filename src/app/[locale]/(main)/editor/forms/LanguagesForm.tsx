@@ -19,7 +19,10 @@ import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 const LanguagesForm = ({
   resumeData,
   setResumeData,
+  translation
 }: EditorFormProps) => {
+  const {editorPage} = translation
+  const {Languages} = editorPage
   const form = useForm<LanguageValues>({
     resolver: zodResolver(languageSchema),
     defaultValues: {
@@ -50,8 +53,8 @@ const LanguagesForm = ({
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">languages title</h2>
-        <p className="text-sm text-muted-foreground">languages subtitle</p>
+        <h2 className="text-2xl font-semibold">{Languages.title}</h2>
+        <p className="text-sm text-muted-foreground">{Languages.subtitle}</p>
       </div>
       <Form {...form}>
         <form className="space-y-3">
@@ -62,6 +65,7 @@ const LanguagesForm = ({
               index={index}
               remove={remove}
               key={field.id}
+              translation={Languages}
             />
           ))}
           <div className="flex justify-center">
@@ -74,7 +78,7 @@ const LanguagesForm = ({
                 })
               }
             >
-              add language
+              {Languages.addLanguageButton}
             </Button>
           </div>
         </form>
@@ -90,8 +94,15 @@ interface LanguageItemItemProps {
   form: UseFormReturn<LanguageValues>;
   index: number;
   remove: (index: number) => void;
+  translation: {
+    title: string;
+    subtitle: string;
+    language: string;
+    level: string;
+    addLanguageButton: string;
 }
-const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
+}
+const LanguageItem = ({ form, index, remove,translation }: LanguageItemItemProps) => {
   return (
     <div className="grid sm500min:flex sm500:grid-cols-2 gap-3">
       <FormField
@@ -99,7 +110,7 @@ const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
         name={`languages.${index}.language`}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>language</FormLabel>
+            <FormLabel>{translation.language}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -112,7 +123,7 @@ const LanguageItem = ({ form, index, remove }: LanguageItemItemProps) => {
         name={`languages.${index}.level`}
         render={({ field }) => (
           <FormItem>
-            <FormLabel>level</FormLabel>
+            <FormLabel>{translation.level}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>

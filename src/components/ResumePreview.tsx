@@ -18,6 +18,7 @@ interface ResumePreviewProps {
     present: string;
     education: string;
     skills: string;
+    languages: string;
   };
 }
 
@@ -82,9 +83,10 @@ interface ResumeSectionProps {
     present: string;
     education: string;
     skills: string;
+    languages:string;
   }
 }
-function LanguagesSections({resumeData}:ResumeSectionProps) {
+function LanguagesSections({resumeData,translation}:ResumeSectionProps) {
   const { languages, colorHex } = resumeData;
   const languagesNotEmpty = languages?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -106,7 +108,7 @@ function LanguagesSections({resumeData}:ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          languages
+          {translation?.languages}
         </p>
         {languagesNotEmpty.map((lang, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
