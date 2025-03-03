@@ -36,6 +36,7 @@ interface ResumeItemProps {
     present: string;
     education: string;
     skills: string;
+    languages: string;
 }
   translation:{
     delete: string;
