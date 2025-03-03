@@ -109,7 +109,7 @@ const LanguageItem = ({ form, index, remove,translation }: LanguageItemItemProps
         control={form.control}
         name={`languages.${index}.language`}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="grow">
             <FormLabel>{translation.language}</FormLabel>
             <FormControl>
               <Input {...field} />
@@ -122,7 +122,7 @@ const LanguageItem = ({ form, index, remove,translation }: LanguageItemItemProps
         control={form.control}
         name={`languages.${index}.level`}
         render={({ field }) => (
-          <FormItem>
+          <FormItem className="grow">
             <FormLabel>{translation.level}</FormLabel>
             <FormControl>
               <Input {...field} />

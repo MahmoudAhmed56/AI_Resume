@@ -90,8 +90,6 @@ body {
   margin: 0.6cm;
 }
 [dir='rtl'] * {
-  direction: rtl;
-  text-align: right;
   font-family: var(--font-cairo);
 }
 [dir="rtl"] {
