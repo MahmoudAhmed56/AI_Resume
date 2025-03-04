@@ -48,6 +48,34 @@ export const workExperienceSchema = z.object({
 
 export type WorkExperienceValues = z.infer<typeof workExperienceSchema>;
 
+
+export const projectLinkSchema = z.object({
+  projectLinks: z
+  .array(
+    z.object({
+      title: optionalString,
+      link: optionalString,
+    })
+    
+  ).optional(),
+})
+
+export type ProjectLinkValues = z.infer<typeof projectLinkSchema>;
+
+export const projectSchema = z.object({
+  projects: z
+    .array(
+      z.object({
+        project_name: optionalString,
+        description: optionalString,
+        ...projectLinkSchema.shape,
+      }),
+    )
+    .optional(),
+});
+
+export type ProjectValues = z.infer<typeof projectSchema>;
+
 export const educationSchema = z.object({
   educations: z
     .array(
