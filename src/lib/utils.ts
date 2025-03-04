@@ -48,6 +48,14 @@ export function mapToResumeValues(data:ResumeServerData):ResumeValues {
       language: lang.language || undefined,
       level: lang.level || undefined,
     })),
+    projects: data.projects.map((project) => ({
+      project_name: project.project_name || undefined,
+      description: project.description || undefined,
+      projectLinks: project.projectLinks?.map((link) => ({
+        title: link.title || undefined,
+        link: link.link || undefined,
+      })) || undefined,
+    })),
     skills: data.skills,
     borderStyle: data.borderStyle,
     colorHex: data.colorHex,

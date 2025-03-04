@@ -74,7 +74,7 @@ export const saveResume = async (values: ResumeValues) => {
         projects:{
           deleteMany: {},
           create: projects?.map((project) => ({
-            ...project
+            ...project,
           })),
         },
         educations: {
