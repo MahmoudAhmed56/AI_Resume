@@ -34,6 +34,7 @@ model Resume {
   updatedAt   DateTime @updatedAt
 
   workExperiences WorkExperience[]
+  projects        Project[]
   educations      Education[]
   languages       Language[]
   skills          String[]
@@ -72,6 +73,8 @@ model Project {
   project_name String?
   description  String?
   projectLinks ProjectLink[]
+  Resume       Resume?       @relation(fields: [resumeId], references: [id])
+  resumeId     String?
 
   @@map("projects")
 }
@@ -79,7 +82,7 @@ model Project {
 model ProjectLink {
   id        String   @id @default(cuid())
   title     String?
-  link     String?
+  link      String?
   project   Project? @relation(fields: [projectId], references: [id])
   projectId String?
 
