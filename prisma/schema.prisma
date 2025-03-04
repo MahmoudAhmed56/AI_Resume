@@ -67,6 +67,25 @@ model WorkExperience {
   @@map("work_experiences")
 }
 
+model Project {
+  id           String        @id @default(cuid())
+  project_name String?
+  description  String?
+  projectLinks ProjectLink[]
+
+  @@map("projects")
+}
+
+model ProjectLink {
+  id        String   @id @default(cuid())
+  title     String?
+  linke     String?
+  project   Project? @relation(fields: [projectId], references: [id])
+  projectId String?
+
+  @@map("project_links")
+}
+
 model Education {
   id        String    @id @default(cuid())
   degree    String?
