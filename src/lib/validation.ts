@@ -123,6 +123,7 @@ export const resumeSchema = z.object({
   ...skillsSchema.shape,
   ...summarySchema.shape,
   ...languageSchema.shape,
+  ...projectSchema.shape,
   colorHex: optionalString,
   borderStyle: optionalString,
 });
