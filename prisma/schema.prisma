@@ -72,7 +72,7 @@ model Project {
   id           String        @id @default(cuid())
   project_name String?
   description  String?
-  projectLinks ProjectLink[]
+  projectLinks ProjectLink[] 
   Resume       Resume?       @relation(fields: [resumeId], references: [id])
   resumeId     String?
 
@@ -83,8 +83,8 @@ model ProjectLink {
   id        String   @id @default(cuid())
   title     String?
   link      String?
-  project   Project? @relation(fields: [projectId], references: [id])
-  projectId String?
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId String
 
   @@map("project_links")
 }

@@ -71,11 +71,16 @@ export const saveResume = async (values: ResumeValues) => {
             ...lang,
           })),
         },
-        projects:{
+        projects: {
           deleteMany: {},
           create: projects?.map((project) => ({
             ...project,
-          })),
+            projectLinks: {
+              create: project.projectLinks?.map(link => ({
+                ...link,
+              })) || []
+            }
+          })) || []
         },
         educations: {
           deleteMany: {},
@@ -105,10 +110,15 @@ export const saveResume = async (values: ResumeValues) => {
             ...exp,
           })),
         },
-        projects: {
+          projects: {
           create: projects?.map((project) => ({
             ...project,
-          })),
+            projectLinks: {
+              create: project.projectLinks?.map(link => ({
+                ...link,
+              })) || []
+            }
+          })) || []
         },
         educations: {
           create: educations?.map((edu) => ({

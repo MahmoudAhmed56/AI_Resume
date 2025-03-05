@@ -68,7 +68,10 @@ export const projectSchema = z.object({
       z.object({
         project_name: optionalString,
         description: optionalString,
-        projectLinks: z.array(projectLinkSchema).optional(),
+        projectLinks: z.array(z.object({
+          title: optionalString,
+          link: optionalString,
+        })).optional(),
       }),
     )
     .optional(),
@@ -130,12 +133,4 @@ export const resumeSchema = z.object({
 export type ResumeValues = Omit<z.infer<typeof resumeSchema>, "photo"> & {
   id?: string;
   photo?: File | string | null;
-  projects?: {
-    project_name?: string;
-    description?: string;
-    projectLinks?: {
-      title?: string;
-      link?: string;
-    }[];
-  }[];
 };

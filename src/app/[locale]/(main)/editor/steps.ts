@@ -17,7 +17,7 @@ export const steps: {
     title:{English:"Personal info",Arabic:"معلومات شخصية"},component: PersonalInfoForm,key:"Personal-info"
   },
   {title:{English:"Work experience",Arabic:"الخبرة العملية"},component: WorkExperienceForm,key:"Work-experience"},
-  {title:{English:"Projects",Arabic:"المشاريع"},component: ProjectsForm,key:"Work-experience"},
+  {title:{English:"Projects",Arabic:"المشاريع"},component: ProjectsForm,key:"Projects"},
   {title:{English:"Education",Arabic:"التعليم"},component: EducationForm,key:"Education"},
   {title:{English:"Skills",Arabic:"المهارات"},component: SkillsForm,key:"Skills"},
   {title:{English:"Languages",Arabic:"اللغات"},component: LanguagesForm,key:"Languages"},
