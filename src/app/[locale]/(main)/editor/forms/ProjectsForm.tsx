@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -39,7 +38,6 @@ import { cn } from "@/lib/utils";
 const ProjectsForm = ({
   resumeData,
   setResumeData,
-  translation,
 }: EditorFormProps) => {
   // const {editorPage} = translation
   // const {WorkExperience} = editorPage
