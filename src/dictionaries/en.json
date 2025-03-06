@@ -141,7 +141,8 @@
     "present": "Present",
     "education": "Education",
     "skills": "Skills",
-    "languages":"Languages"
+    "languages":"Languages",
+    "project":"Projects"
   },
   "premiumModal": {
     "resumeBuilder": "Resume Builder AI Premium",

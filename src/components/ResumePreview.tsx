@@ -267,7 +267,7 @@ function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
     </>
   );
 }
-function ProjectSection({ resumeData }: ResumeSectionProps) {
+function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
   const { colorHex,projects } = resumeData;
   const projectsNotEmpty = projects?.filter(
     (project) => Object.values(project).filter(Boolean).length > 0,
@@ -289,7 +289,7 @@ function ProjectSection({ resumeData }: ResumeSectionProps) {
             color: colorHex,
           }}
         >
-          Projects
+          {translation?.project}
         </p>
         {projectsNotEmpty.map((project, index) => (
           <div key={index} className="break-inside-avoid space-y-1">

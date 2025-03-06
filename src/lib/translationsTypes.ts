@@ -142,6 +142,7 @@ export interface AppContent {
     education: string;
     skills: string;
     languages: string;
+    project: string;
   };
   premiumModal: {
     resumeBuilder: string;
@@ -164,6 +165,7 @@ export interface resumePreviewTrans {
   education: string;
   skills: string;
   languages: string;
+  project: string;
 };
 export interface Project {
   title: string;
