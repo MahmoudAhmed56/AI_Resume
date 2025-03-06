@@ -100,7 +100,19 @@
       "language": "اللغة",
       "level": "المستوى",
       "addLanguageButton": "إضافة لغة"
-    }
+    },
+      "Project": {
+        "title": "المشاريع",
+        "subtitle": "أضف عددًا غير محدود من المشاريع.",
+        "project": "المشروع",
+        "project_name": "اسم المشروع",
+        "linkTitle": "عنوان الرابط",
+        "linkURL": "رابط URL",
+        "addLink": "إضافة رابط",
+        "description": "الوصف",
+        "addProjectButton": "إضافة مشروع",
+        "removeButton": "إزالة"
+      }
   },
   "billingPage": {
     "somethingWentWrong": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",

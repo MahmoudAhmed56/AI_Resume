@@ -99,6 +99,18 @@
       "language": "Language",
       "level": "Level",
       "addLanguageButton": "Add language"
+    },
+    "Project": {
+      "title": "Projects",
+      "subtitle": "Add as many projects as you like.",
+      "project": "Project",
+      "project_name": "Project name",
+      "linkTitle":"Link title",
+      "linkURL":"Link URL",
+      "addLink":"Add link",
+      "description": "Description",
+      "addProjectButton": "Add project",
+      "removeButton": "remove"
     }
   },
   "billingPage": {

@@ -100,6 +100,18 @@ export interface AppContent {
       level: string;
       addLanguageButton: string;
     };
+    Project : {
+      title: string;
+      subtitle: string;
+      project: string;
+      project_name: string;
+      linkTitle: string;
+      linkURL: string;
+      addLink: string;
+      description: string;
+      addProjectButton: string;
+      removeButton: string;
+    };
   };
   billingPage: {
     somethingWentWrong: string;
@@ -153,3 +165,15 @@ export interface resumePreviewTrans {
   skills: string;
   languages: string;
 };
+export interface Project {
+  title: string;
+  subtitle: string;
+  project: string;
+  project_name: string;
+  linkTitle: string;
+  linkURL: string;
+  addLink: string;
+  description: string;
+  addProjectButton: string;
+  removeButton: string;
+}

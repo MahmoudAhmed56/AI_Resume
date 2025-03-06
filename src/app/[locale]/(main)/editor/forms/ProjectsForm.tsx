@@ -34,13 +34,15 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
+import { Project } from "@/lib/translationsTypes";
 
 const ProjectsForm = ({
   resumeData,
   setResumeData,
+  translation
 }: EditorFormProps) => {
-  // const {editorPage} = translation
-  // const {WorkExperience} = editorPage
+  const {editorPage} = translation
+  const {Project} = editorPage
   const form = useForm<ProjectValues>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
@@ -98,8 +100,8 @@ useEffect(() => {
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">projects</h2>
-        <p className="text-sm text-muted-foreground">your projecrs</p>
+        <h2 className="text-2xl font-semibold">{Project.title}</h2>
+        <p className="text-sm text-muted-foreground">{Project.subtitle}</p>
       </div>
       <Form {...form}>
         <form className="space-y-3">
@@ -120,7 +122,7 @@ useEffect(() => {
                   index={index}
                   remove={remove}
                   key={field.id}
-                  // project={project}
+                  project={Project}
                 />
               ))}
             </SortableContext>
@@ -141,7 +143,7 @@ useEffect(() => {
                 })
               }
             >
-              add project
+              {Project.addProjectButton}
             </Button>
           </div>
         </form>
@@ -157,20 +159,7 @@ interface ProjectItemProps {
   form: UseFormReturn<ProjectValues>;
   index: number;
   remove: (index: number) => void;
-  //   project: {
-  //     title: string;
-  //     subtitle: string;
-  //     jobTitle: string;
-  //     company: string;
-  //     startDate: string;
-  //     endDate: string;
-  //     dateMessage1: string;
-  //     dateMessage2: string;
-  //     dateMessage3: string;
-  //     description: string;
-  //     addWorkExperienceButton: string;
-  //     removeButton: string;
-  // }
+  project: Project;
 }
 
 function ProjectItem({
@@ -178,7 +167,7 @@ function ProjectItem({
   form,
   index,
   remove,
-  // WorkExperience
+  project
 }: ProjectItemProps) {
   const { fields: links, append: appendLink, remove: removeLink } = useFieldArray({
     control: form.control,
@@ -205,7 +194,7 @@ function ProjectItem({
       }}
     >
       <div className="flex justify-between gap-2">
-        <span className="font-semibold">project {index + 1}</span>
+        <span className="font-semibold">{project.project} {index + 1}</span>
         <GripHorizontal
           className="size-5 cursor-grab text-muted-foreground focus:outline-none"
           {...attributes}
@@ -218,7 +207,7 @@ function ProjectItem({
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>project_name</FormLabel>
+              <FormLabel>{project.project_name}</FormLabel>
               <FormControl>
                 <Input {...field} autoFocus />
               </FormControl>
@@ -235,7 +224,7 @@ function ProjectItem({
               name={`projects.${index}.projectLinks.${linkIndex}.title`}
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Link Title</FormLabel>
+                  <FormLabel>{project.linkTitle}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -248,7 +237,7 @@ function ProjectItem({
               name={`projects.${index}.projectLinks.${linkIndex}.link`}
               render={({ field }) => (
                 <FormItem className="flex-1">
-                  <FormLabel>Link URL</FormLabel>
+                  <FormLabel>{project.linkURL}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -262,7 +251,7 @@ function ProjectItem({
               onClick={() => removeLink(linkIndex)}
               className="mt-auto"
             >
-              Remove
+              {project.removeButton}
             </Button>
           </div>
         ))}
@@ -271,7 +260,7 @@ function ProjectItem({
           onClick={() => appendLink({ title: '', link: '' })}
           variant="secondary"
         >
-          Add Link
+          {project.addLink}
         </Button>
       </div>
       <FormField
@@ -280,7 +269,7 @@ function ProjectItem({
         render={({ field }) => {
           return (
             <FormItem>
-              <FormLabel>description</FormLabel>
+              <FormLabel>{project.description}</FormLabel>
               <FormControl>
                 <Textarea {...field} />
               </FormControl>
@@ -290,7 +279,7 @@ function ProjectItem({
         }}
       />
       <Button variant="destructive" type="button" onClick={() => remove(index)}>
-        removeButton
+      {project.removeButton}
       </Button>
     </div>
   );
