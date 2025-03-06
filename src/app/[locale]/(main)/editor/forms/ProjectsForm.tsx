@@ -70,8 +70,8 @@ useEffect(() => {
         ?.map(project => ({
           ...project,
           projectLinks: project.projectLinks
-            ?.filter((link): link is Exclude<typeof link, undefined> => 
-              link !== undefined
+          ?.filter((link): link is { link: string; title?: string } => 
+            link !== undefined && link.link !== undefined // Ensure `link` is defined and `link.link` is a string
             )
         }))
     });
@@ -241,7 +241,7 @@ function ProjectItem({
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage>you must to pot url</FormMessage>
                 </FormItem>
               )}
             />

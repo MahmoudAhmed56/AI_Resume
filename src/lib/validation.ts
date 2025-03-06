@@ -70,7 +70,7 @@ export const projectSchema = z.object({
         description: optionalString,
         projectLinks: z.array(z.object({
           title: optionalString,
-          link: optionalString,
+          link: z.string().trim().url("You must put url"),
         })).optional(),
       }),
     )
