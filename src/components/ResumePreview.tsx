@@ -267,7 +267,7 @@ function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
     </>
   );
 }
-function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
+function ProjectSection({ resumeData }: ResumeSectionProps) {
   const { colorHex,projects } = resumeData;
   const projectsNotEmpty = projects?.filter(
     (project) => Object.values(project).filter(Boolean).length > 0,
@@ -294,7 +294,7 @@ function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
         {projectsNotEmpty.map((project, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
             <div
-              className="flex items-center gap-2 text-sm font-semibold"
+              className="flex items-center flex-wrap gap-2 text-sm font-semibold"
               style={{
                 color: colorHex,
               }}
