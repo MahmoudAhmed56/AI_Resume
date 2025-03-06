@@ -7,6 +7,7 @@ import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
 import { resumePreviewTrans } from "@/lib/translationsTypes";
+import Link from "./link";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -48,6 +49,10 @@ const ResumePreview = ({
           translation={translation}
         />
         <ExperienceSection
+          resumeData={resumeData}
+          translation={translation}
+        />
+        <ProjectSection
           resumeData={resumeData}
           translation={translation}
         />
@@ -256,6 +261,57 @@ function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
             </div>
             <p className="text-xs font-semibold">{exp.company}</p>
             <div className="whitespace-pre-line text-xs">{exp.description}</div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
+  const { colorHex,projects } = resumeData;
+  const projectsNotEmpty = projects?.filter(
+    (project) => Object.values(project).filter(Boolean).length > 0,
+  );
+
+  if (!projectsNotEmpty?.length) return null;
+  return (
+    <>
+      <hr
+        className="border-2"
+        style={{
+          borderColor: colorHex,
+        }}
+      />
+      <div className="space-y-3">
+        <p
+          className="text-lg font-semibold"
+          style={{
+            color: colorHex,
+          }}
+        >
+          Projects
+        </p>
+        {projectsNotEmpty.map((project, index) => (
+          <div key={index} className="break-inside-avoid space-y-1">
+            <div
+              className="flex items-center gap-2 text-sm font-semibold"
+              style={{
+                color: colorHex,
+              }}
+            >
+              <span>{project.project_name}: </span>
+              {
+                project.projectLinks?.map((projectLink,index)=>{
+                  return(
+                    <Link 
+                    key={index}
+                    target="_blank" href={`${projectLink.link}`} className="text-xs font-semibold text-blue-500 underline">{projectLink.title}</Link>
+                  )
+                })
+              }
+      
+            </div>
+            <div className="whitespace-pre-line text-xs">{project.description}</div>
           </div>
         ))}
       </div>
