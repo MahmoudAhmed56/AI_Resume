@@ -53,12 +53,15 @@ const ProjectsForm = ({
           projectLinks: z
             .array(
               z.object({
-                title: optionalString,
+                title: z
+                  .string()
+                  .trim()
+                  .min(1,Project.validation.TITLE_REQUIRED).max(45,Project.validation.MAX_TITLE),
                 link: z
                   .string()
                   .trim()
                   .min(1, Project.validation.URL_REQUIRED)
-                  .url(Project.validation.INVALID_URL), // Translation key
+                  .url(Project.validation.INVALID_URL),
               }),
             )
             .optional(),
@@ -73,10 +76,11 @@ const ProjectsForm = ({
         resumeData.projects?.map((project) => ({
           project_name: project.project_name || "", // Ensure defined value
           description: project.description || "", // Ensure defined value
-          projectLinks: project.projectLinks?.map((link) => ({
-            title: link.title || "", // Fallback to empty string if undefined
-            link: link.link || "", // Fallback to empty string if undefined
-          })) || [], 
+          projectLinks:
+            project.projectLinks?.map((link) => ({
+              title: link.title || "", // Fallback to empty string if undefined
+              link: link.link || "", // Fallback to empty string if undefined
+            })) || [],
         })) || [],
     },
   });
@@ -95,7 +99,7 @@ const ProjectsForm = ({
           ?.map((project) => ({
             ...project,
             projectLinks: project.projectLinks?.filter(
-              (link): link is { link: string; title?: string } =>
+              (link): link is { link: string; title: string } =>
                 link !== undefined && link.link !== undefined, // Ensure `link` is defined and `link.link` is a string
             ),
           })),
@@ -248,6 +252,7 @@ function ProjectItem({ id, form, index, remove, project }: ProjectItemProps) {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -260,7 +265,7 @@ function ProjectItem({ id, form, index, remove, project }: ProjectItemProps) {
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage/>
+                  <FormMessage />
                 </FormItem>
               )}
             />
