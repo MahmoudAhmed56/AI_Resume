@@ -76,7 +76,7 @@ const ProjectsForm = ({
           projectLinks: project.projectLinks?.map((link) => ({
             title: link.title || "", // Fallback to empty string if undefined
             link: link.link || "", // Fallback to empty string if undefined
-          })) || [{ title: "", link: "" }], // Ensure at least one link with empty values
+          })) || [], 
         })) || [],
     },
   });
@@ -159,12 +159,7 @@ const ProjectsForm = ({
                 append({
                   project_name: "",
                   description: "",
-                  projectLinks: [
-                    {
-                      title: "",
-                      link: "",
-                    },
-                  ],
+                  projectLinks: [],
                 })
               }
             >
@@ -259,13 +254,13 @@ function ProjectItem({ id, form, index, remove, project }: ProjectItemProps) {
             <FormField
               control={form.control}
               name={`projects.${index}.projectLinks.${linkIndex}.link`}
-              render={({ field, fieldState }) => (
+              render={({ field }) => (
                 <FormItem className="flex-1">
                   <FormLabel>{project.linkURL}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  {fieldState.error && <FormMessage>test</FormMessage>}
+                  <FormMessage/>
                 </FormItem>
               )}
             />
