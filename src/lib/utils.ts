@@ -52,7 +52,7 @@ export function mapToResumeValues(data:ResumeServerData):ResumeValues {
       project_name: project.project_name || undefined,
       description: project.description || undefined,
       projectLinks: project.projectLinks?.map((link) => ({
-        title: link.title || undefined,
+        title: link.title,
         link: link.link,
       })) || undefined,
     })),
