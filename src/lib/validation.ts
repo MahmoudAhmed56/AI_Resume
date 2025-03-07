@@ -61,7 +61,6 @@ export const projectLinkSchema = z.object({
 })
 
 export type ProjectLinkValues = z.infer<typeof projectLinkSchema>;
-
 export const projectSchema = z.object({
   projects: z
     .array(
@@ -70,13 +69,12 @@ export const projectSchema = z.object({
         description: optionalString,
         projectLinks: z.array(z.object({
           title: optionalString,
-          link: z.string().trim().url("You must put url"),
+          link: z.string().trim().url()        // Translation key   
         })).optional(),
       }),
     )
     .optional(),
 });
-
 export type ProjectValues = z.infer<typeof projectSchema>;
 
 export const educationSchema = z.object({

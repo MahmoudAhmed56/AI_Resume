@@ -110,7 +110,11 @@
       "addLink":"Add link",
       "description": "Description",
       "addProjectButton": "Add project",
-      "removeButton": "remove"
+      "removeButton": "remove",
+      "validation": {
+        "URL_REQUIRED": "Link is required",
+        "INVALID_URL": "Must be a valid URL"
+      }
     }
   },
   "billingPage": {
@@ -124,6 +128,7 @@
     "somethingWentWrong": "Something went wrong. Please try again.",
     "couldNotSave": "Could not save changes.",
     "retry": "Retry"
+
   },
   "resumeItem": {
     "delete": "Delete",

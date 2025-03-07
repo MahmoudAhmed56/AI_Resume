@@ -10,7 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { EditorFormProps } from "@/lib/types";
-import { ProjectValues, projectSchema } from "@/lib/validation";
+import { ProjectValues, optionalString } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { GripHorizontal } from "lucide-react";
 import { useEffect } from "react";
@@ -35,49 +35,74 @@ import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
 import { Project } from "@/lib/translationsTypes";
+import { z } from "zod";
 
 const ProjectsForm = ({
   resumeData,
   setResumeData,
-  translation
+  translation,
 }: EditorFormProps) => {
-  const {editorPage} = translation
-  const {Project} = editorPage
+  const { editorPage } = translation;
+  const { Project } = editorPage;
+  const projectSchema = z.object({
+    projects: z
+      .array(
+        z.object({
+          project_name: optionalString,
+          description: optionalString,
+          projectLinks: z
+            .array(
+              z.object({
+                title: optionalString,
+                link: z
+                  .string()
+                  .trim()
+                  .min(1, Project.validation.URL_REQUIRED)
+                  .url(Project.validation.INVALID_URL), // Translation key
+              }),
+            )
+            .optional(),
+        }),
+      )
+      .optional(),
+  });
   const form = useForm<ProjectValues>({
     resolver: zodResolver(projectSchema),
     defaultValues: {
-      projects: resumeData.projects?.map(project => ({
-        project_name: project.project_name || '', // Ensure defined value
-        description: project.description || '',   // Ensure defined value
-        projectLinks: project.projectLinks?.map(link => ({
-          title: link.title || '', // Fallback to empty string if undefined
-          link: link.link || ''    // Fallback to empty string if undefined
-        })) || [{ title: '', link: '' }] // Ensure at least one link with empty values
-      })) || []
-    }
+      projects:
+        resumeData.projects?.map((project) => ({
+          project_name: project.project_name || "", // Ensure defined value
+          description: project.description || "", // Ensure defined value
+          projectLinks: project.projectLinks?.map((link) => ({
+            title: link.title || "", // Fallback to empty string if undefined
+            link: link.link || "", // Fallback to empty string if undefined
+          })) || [{ title: "", link: "" }], // Ensure at least one link with empty values
+        })) || [],
+    },
   });
-useEffect(() => {
-  const { unsubscribe } = form.watch(async (values) => {
-    const isValid = await form.trigger();
-    if (!isValid) return;
-    
-    setResumeData({
-      ...resumeData,
-      projects: values.projects
-        ?.filter((project): project is Exclude<typeof project, undefined> => 
-          project !== undefined
-        )
-        ?.map(project => ({
-          ...project,
-          projectLinks: project.projectLinks
-          ?.filter((link): link is { link: string; title?: string } => 
-            link !== undefined && link.link !== undefined // Ensure `link` is defined and `link.link` is a string
-            )
-        }))
+  useEffect(() => {
+    const { unsubscribe } = form.watch(async (values) => {
+      const isValid = await form.trigger();
+      if (!isValid) return;
+
+      setResumeData({
+        ...resumeData,
+        projects: values.projects
+          ?.filter(
+            (project): project is Exclude<typeof project, undefined> =>
+              project !== undefined,
+          )
+          ?.map((project) => ({
+            ...project,
+            projectLinks: project.projectLinks?.filter(
+              (link): link is { link: string; title?: string } =>
+                link !== undefined && link.link !== undefined, // Ensure `link` is defined and `link.link` is a string
+            ),
+          })),
+      });
     });
-  });
-  return unsubscribe;
-}, [form, resumeData, setResumeData]);
+    return unsubscribe;
+  }, [form, resumeData, setResumeData]);
   const { fields, append, remove, move } = useFieldArray({
     control: form.control,
     name: "projects",
@@ -162,16 +187,14 @@ interface ProjectItemProps {
   project: Project;
 }
 
-function ProjectItem({
-  id,
-  form,
-  index,
-  remove,
-  project
-}: ProjectItemProps) {
-  const { fields: links, append: appendLink, remove: removeLink } = useFieldArray({
+function ProjectItem({ id, form, index, remove, project }: ProjectItemProps) {
+  const {
+    fields: links,
+    append: appendLink,
+    remove: removeLink,
+  } = useFieldArray({
     control: form.control,
-    name: `projects.${index}.projectLinks`
+    name: `projects.${index}.projectLinks`,
   });
   const {
     attributes,
@@ -194,7 +217,9 @@ function ProjectItem({
       }}
     >
       <div className="flex justify-between gap-2">
-        <span className="font-semibold">{project.project} {index + 1}</span>
+        <span className="font-semibold">
+          {project.project} {index + 1}
+        </span>
         <GripHorizontal
           className="size-5 cursor-grab text-muted-foreground focus:outline-none"
           {...attributes}
@@ -228,20 +253,19 @@ function ProjectItem({
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
               name={`projects.${index}.projectLinks.${linkIndex}.link`}
-              render={({ field }) => (
+              render={({ field, fieldState }) => (
                 <FormItem className="flex-1">
                   <FormLabel>{project.linkURL}</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
-                  <FormMessage>you must to pot url</FormMessage>
+                  {fieldState.error && <FormMessage>test</FormMessage>}
                 </FormItem>
               )}
             />
@@ -257,7 +281,7 @@ function ProjectItem({
         ))}
         <Button
           type="button"
-          onClick={() => appendLink({ title: '', link: '' })}
+          onClick={() => appendLink({ title: "", link: "" })}
           variant="secondary"
         >
           {project.addLink}
@@ -279,7 +303,7 @@ function ProjectItem({
         }}
       />
       <Button variant="destructive" type="button" onClick={() => remove(index)}>
-      {project.removeButton}
+        {project.removeButton}
       </Button>
     </div>
   );

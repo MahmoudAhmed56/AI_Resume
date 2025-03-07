@@ -111,7 +111,11 @@
         "addLink": "إضافة رابط",
         "description": "الوصف",
         "addProjectButton": "إضافة مشروع",
-        "removeButton": "إزالة"
+        "removeButton": "إزالة",
+        "validation": {
+          "URL_REQUIRED": "الرابط مطلوب",
+          "INVALID_URL": "يجب أن يكون رابط صحيح"
+        }
       }
   },
   "billingPage": {
