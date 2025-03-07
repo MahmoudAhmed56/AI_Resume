@@ -37,6 +37,7 @@ model Resume {
   projects        Project[]
   educations      Education[]
   languages       Language[]
+  links           Link[]
   skills          String[]
 
   @@map("resumes")
@@ -72,7 +73,7 @@ model Project {
   id           String        @id @default(cuid())
   project_name String?
   description  String?
-  projectLinks ProjectLink[] 
+  projectLinks ProjectLink[]
   Resume       Resume?       @relation(fields: [resumeId], references: [id])
   resumeId     String?
 
@@ -101,6 +102,28 @@ model Education {
   resumeId  String?
 
   @@map("educations")
+}
+
+model Link {
+  id        String  @id @default(cuid())
+  linkTitle Links
+  link      String
+  Resume    Resume? @relation(fields: [resumeId], references: [id])
+  resumeId  String?
+
+  @@map("links")
+}
+enum Links {
+  Facebook
+  Instagram 
+  X
+  Snapchat 
+  LinkedIn 
+  Github
+  Gmail
+  WhatsApp
+  Telegram 
+  YouTube 
 }
 
 model UserSubscription {
