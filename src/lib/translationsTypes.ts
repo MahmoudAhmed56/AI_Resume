@@ -182,7 +182,6 @@ export interface Project {
   description: string;
   addProjectButton: string;
   removeButton: string;
-  fieldLinkError: string;
   validation: {
     URL_REQUIRED: string;
     INVALID_URL: string;
