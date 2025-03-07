@@ -299,7 +299,7 @@ function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
                 color: colorHex,
               }}
             >
-              <span>{project.project_name}: </span>
+              <span>{project.project_name}{project.project_name&&":"} </span>
               {
                 project.projectLinks?.map((projectLink,index)=>{
                   return(
