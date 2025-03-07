@@ -114,6 +114,8 @@ export interface AppContent {
       validation: {
         URL_REQUIRED: string;
         INVALID_URL: string;
+        TITLE_REQUIRED: string;
+        MAX_TITLE: string;
       }
     };
   };
@@ -185,5 +187,7 @@ export interface Project {
   validation: {
     URL_REQUIRED: string;
     INVALID_URL: string;
+    TITLE_REQUIRED: string;
+    MAX_TITLE: string;
   };
 }

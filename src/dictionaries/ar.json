@@ -114,7 +114,9 @@
         "removeButton": "إزالة",
         "validation": {
           "URL_REQUIRED": "الرابط مطلوب",
-          "INVALID_URL": "يجب أن يكون رابط صحيح"
+          "INVALID_URL": "يجب أن يكون رابط صحيح",
+          "TITLE_REQUIRED": "عنوان الرابط مطلوب",
+          "MAX_TITLE": "أقصي عدد من الحروف 45"
         }
       }
   },

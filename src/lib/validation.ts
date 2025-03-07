@@ -69,7 +69,7 @@ export const projectSchema = z.object({
         description: optionalString,
         projectLinks: z.array(z.object({
           title: optionalString,
-          link: z.string().trim().url()        // Translation key   
+          link: z.string().trim().url()   
         })).optional(),
       }),
     )
