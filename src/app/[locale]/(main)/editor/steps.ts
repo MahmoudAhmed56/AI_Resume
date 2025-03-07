@@ -6,7 +6,6 @@ import EducationForm from "./forms/EducationForm";
 import SkillsForm from "./forms/SkillsForm";
 import LanguagesForm from "./forms/LanguagesForm";
 import SummaryForm from "./forms/SummaryForm";
-import LinksForm from "./forms/LinksForm";
 import ProjectsForm from "./forms/ProjectsForm";
 
 export const steps: {
@@ -22,6 +21,5 @@ export const steps: {
   {title:{English:"Education",Arabic:"التعليم"},component: EducationForm,key:"Education"},
   {title:{English:"Skills",Arabic:"المهارات"},component: SkillsForm,key:"Skills"},
   {title:{English:"Languages",Arabic:"اللغات"},component: LanguagesForm,key:"Languages"},
-  {title:{English:"Links",Arabic:"الروابط"},component: LinksForm,key:"Links"},
   {title:{English:"Summary",Arabic:"الملخص"},component: SummaryForm,key:"Summary"},
 ];
