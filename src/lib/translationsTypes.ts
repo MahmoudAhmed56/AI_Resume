@@ -100,6 +100,19 @@ export interface AppContent {
       level: string;
       addLanguageButton: string;
     };
+    Links: {
+      title: string;
+      subtitle: string;
+      titleForm: string;
+      link: string;
+      addLinkButton: string;
+      validation: {
+        URL_REQUIRED: string;
+        INVALID_URL: string;
+        TITLE_REQUIRED: string;
+        MAX_TITLE: string;
+      }
+    },
     Project : {
       title: string;
       subtitle: string;

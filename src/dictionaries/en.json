@@ -100,6 +100,19 @@
       "level": "Level",
       "addLanguageButton": "Add language"
     },
+    "Links": {
+      "title": "Links",
+      "subtitle": "Add as many links as you like.",
+      "titleForm": "title",
+      "link": "link",
+      "addLinkButton": "Add link",
+      "validation": {
+        "URL_REQUIRED": "Link is required",
+        "INVALID_URL": "Must be a valid URL",
+        "TITLE_REQUIRED": "Title is required",
+        "MAX_TITLE": "Max letters is 45"
+      }
+    },
     "Project": {
       "title": "Projects",
       "subtitle": "Add as many projects as you like.",
