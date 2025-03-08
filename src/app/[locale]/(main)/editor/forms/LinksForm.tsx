@@ -48,7 +48,7 @@ const LinksForm = ({
     defaultValues: {
       links: (resumeData.links || []).map((link) => ({
         title: link.title || "", // Ensure required string
-        link: link.link || "", // Ensure required string
+        link: link.link || "https://", // Ensure required string
       })),
     },
   });
@@ -95,7 +95,7 @@ const LinksForm = ({
               onClick={() =>
                 append({
                   title: "",
-                  link: "",
+                  link: "https://",
                 })
               }
             >
