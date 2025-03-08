@@ -55,8 +55,8 @@ model Language {
 
 model Link {
   id       String  @id @default(cuid())
-  title    String?
-  link     String?
+  title    String
+  link     String
   Resume   Resume? @relation(fields: [resumeId], references: [id])
   resumeId String?
 
