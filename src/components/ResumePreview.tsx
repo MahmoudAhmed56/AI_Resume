@@ -6,8 +6,20 @@ import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
-import { resumePreviewTrans } from "@/lib/translationsTypes";
+import { LinkType, resumePreviewTrans } from "@/lib/translationsTypes";
 import Link from "./link";
+import {
+  RiFacebookBoxFill,
+  RiGithubFill,
+  RiInstagramFill,
+  RiLink,
+  RiLinkedinBoxFill,
+  RiMailFill,
+  RiTelegramFill,
+  RiTwitterXFill,
+  RiWhatsappFill,
+  RiYoutubeFill,
+} from "@remixicon/react";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -44,30 +56,13 @@ const ResumePreview = ({
         dir={locale === "ar" ? "rtl" : "ltr"}
       >
         <PersonalInfoHeader resumeData={resumeData} />
-        <SummarySection
-          resumeData={resumeData}
-          translation={translation}
-        />
-        <ExperienceSection
-          resumeData={resumeData}
-          translation={translation}
-        />
-        <ProjectSection
-          resumeData={resumeData}
-          translation={translation}
-        />
-        <EducationSection
-          resumeData={resumeData}
-          translation={translation}
-        />
-        <SkillsSections
-          resumeData={resumeData}
-          translation={translation}
-        />
-        <LanguagesSections
-          resumeData={resumeData}
-          translation={translation}
-        />
+        <SummarySection resumeData={resumeData} translation={translation} />
+        <ExperienceSection resumeData={resumeData} translation={translation} />
+        <ProjectSection resumeData={resumeData} translation={translation} />
+        <EducationSection resumeData={resumeData} translation={translation} />
+        <SkillsSections resumeData={resumeData} translation={translation} />
+        <LanguagesSections resumeData={resumeData} translation={translation} />
+        <LinksSections resumeData={resumeData} translation={translation} />
       </div>
     </div>
   );
@@ -78,7 +73,7 @@ interface ResumeSectionProps {
   resumeData: ResumeValues;
   translation?: resumePreviewTrans;
 }
-function LanguagesSections({resumeData,translation}:ResumeSectionProps) {
+function LanguagesSections({ resumeData, translation }: ResumeSectionProps) {
   const { languages, colorHex } = resumeData;
   const languagesNotEmpty = languages?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -104,7 +99,10 @@ function LanguagesSections({resumeData,translation}:ResumeSectionProps) {
         </p>
         {languagesNotEmpty.map((lang, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
-            <p className="text-xs font-semibold">{lang.language}: <span className="whitespace-pre-line text-xs">{lang.level}</span></p>
+            <p className="text-xs font-semibold">
+              {lang.language}:{" "}
+              <span className="whitespace-pre-line text-xs">{lang.level}</span>
+            </p>
           </div>
         ))}
       </div>
@@ -112,6 +110,72 @@ function LanguagesSections({resumeData,translation}:ResumeSectionProps) {
   );
 }
 
+function LinksSections({ resumeData, translation }: ResumeSectionProps) {
+  const { links, colorHex } = resumeData;
+
+  // Simplified empty check using optional chaining
+  if (!links?.filter(link => Object.values(link).some(Boolean))?.length) return null;
+
+  // Platform configuration with test functions and icons
+  const platformConfig = [
+    { 
+      test: (link: LinkType) => 
+        link.title.toLowerCase() === 'facebook' || 
+        link.link.includes('facebook.com'),
+      icon: <RiFacebookBoxFill color="#1877F2" />
+    },
+    {
+      test: (link: LinkType) =>
+        ['x', 'twitter'].includes(link.title.toLowerCase()) ||
+        link.link.includes('x.com'),
+      icon: <RiTwitterXFill color="black" />
+    },
+    {
+      test: (link: LinkType) =>
+        link.title.toLowerCase() === 'instagram' ||
+        link.link.includes('instagram.com'),
+      icon: <RiInstagramFill color="#E4405F" />
+    },
+    // Add other platforms following the same pattern...
+  ];
+
+  // Default icon for unknown links
+  const defaultIcon = <RiLink color="gray" />;
+
+  // Helper function to find matching icon
+  const getLinkIcon = (link: LinkType) => {
+    return platformConfig.find(({ test }) => test(link))?.icon || defaultIcon;
+  };
+
+  return (
+    <>
+      <hr className="border-2" style={{ borderColor: colorHex }} />
+      <div className="space-y-3">
+        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+          {translation?.links}
+        </p>
+        {links.map((link, index) => {
+          if (!Object.values(link).some(Boolean)) return null;
+          
+          return (
+            <div key={`${link.title}-${index}`} className="break-inside-avoid space-y-1">
+              <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+                {getLinkIcon(link)}
+                <Link
+                  target="_blank"
+                  href={link.link}
+                  className="text-xs font-semibold text-blue-500 underline"
+                >
+                  {link.title}
+                </Link>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+}
 
 function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   const {
@@ -192,8 +256,7 @@ function PersonalInfoHeader({ resumeData }: ResumeSectionProps) {
   );
 }
 
-function SummarySection({ resumeData,translation }: ResumeSectionProps) {
-  
+function SummarySection({ resumeData, translation }: ResumeSectionProps) {
   const { summary, colorHex } = resumeData;
   if (!summary) return null;
   return (
@@ -219,7 +282,7 @@ function SummarySection({ resumeData,translation }: ResumeSectionProps) {
   );
 }
 
-function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
+function ExperienceSection({ resumeData, translation }: ResumeSectionProps) {
   const { workExperiences, colorHex } = resumeData;
   const workExperiencesNotEmpty = workExperiences?.filter(
     (exp) => Object.values(exp).filter(Boolean).length > 0,
@@ -255,7 +318,9 @@ function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
               {exp.startDate && (
                 <span>
                   {formatDate(exp.startDate, "MM/yyyy")} -{" "}
-                  {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : `${translation?.present}`}
+                  {exp.endDate
+                    ? formatDate(exp.endDate, "MM/yyyy")
+                    : `${translation?.present}`}
                 </span>
               )}
             </div>
@@ -267,8 +332,8 @@ function ExperienceSection({ resumeData,translation }: ResumeSectionProps) {
     </>
   );
 }
-function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
-  const { colorHex,projects } = resumeData;
+function ProjectSection({ resumeData, translation }: ResumeSectionProps) {
+  const { colorHex, projects } = resumeData;
   const projectsNotEmpty = projects?.filter(
     (project) => Object.values(project).filter(Boolean).length > 0,
   );
@@ -294,24 +359,31 @@ function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
         {projectsNotEmpty.map((project, index) => (
           <div key={index} className="break-inside-avoid space-y-1">
             <div
-              className="flex items-center flex-wrap gap-2 text-sm font-semibold"
+              className="flex flex-wrap items-center gap-2 text-sm font-semibold"
               style={{
                 color: colorHex,
               }}
             >
-              <span>{project.project_name}{project.project_name&&":"} </span>
-              {
-                project.projectLinks?.map((projectLink,index)=>{
-                  return(
-                    <Link 
+              <span>
+                {project.project_name}
+                {project.project_name && ":"}{" "}
+              </span>
+              {project.projectLinks?.map((projectLink, index) => {
+                return (
+                  <Link
                     key={index}
-                    target="_blank" href={`${projectLink.link}`} className="text-xs font-semibold text-blue-500 underline">{projectLink.title}</Link>
-                  )
-                })
-              }
-      
+                    target="_blank"
+                    href={`${projectLink.link}`}
+                    className="text-xs font-semibold text-blue-500 underline"
+                  >
+                    {projectLink.title}
+                  </Link>
+                );
+              })}
             </div>
-            <div className="whitespace-pre-line text-xs">{project.description}</div>
+            <div className="whitespace-pre-line text-xs">
+              {project.description}
+            </div>
           </div>
         ))}
       </div>
@@ -319,7 +391,7 @@ function ProjectSection({ resumeData,translation }: ResumeSectionProps) {
   );
 }
 
-function EducationSection({ resumeData,translation }: ResumeSectionProps) {
+function EducationSection({ resumeData, translation }: ResumeSectionProps) {
   const { educations, colorHex } = resumeData;
   const educationsNotEmpty = educations?.filter(
     (edu) => Object.values(edu).filter(Boolean).length > 0,
@@ -367,7 +439,7 @@ function EducationSection({ resumeData,translation }: ResumeSectionProps) {
   );
 }
 
-function SkillsSections({ resumeData,translation }: ResumeSectionProps) {
+function SkillsSections({ resumeData, translation }: ResumeSectionProps) {
   const { skills, colorHex, borderStyle } = resumeData;
   if (!skills?.length) return null;
   return (

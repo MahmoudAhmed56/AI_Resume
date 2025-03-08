@@ -162,7 +162,8 @@
     "education": "التعليم",
     "skills": "المهارات",
     "languages":"اللغات",
-    "project":"المشاريع"
+    "project":"المشاريع",
+    "links":"الروابط"
   },
   "premiumModal": {
     "resumeBuilder": "منشئ السيرة الذاتية بالذكاء الاصطناعي - النسخة المميزة",

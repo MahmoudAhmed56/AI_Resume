@@ -162,7 +162,8 @@
     "education": "Education",
     "skills": "Skills",
     "languages":"Languages",
-    "project":"Projects"
+    "project":"Projects",
+    "links":"Links"
   },
   "premiumModal": {
     "resumeBuilder": "Resume Builder AI Premium",

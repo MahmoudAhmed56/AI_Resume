@@ -111,9 +111,9 @@ export interface AppContent {
         INVALID_URL: string;
         TITLE_REQUIRED: string;
         MAX_TITLE: string;
-      }
-    },
-    Project : {
+      };
+    };
+    Project: {
       title: string;
       subtitle: string;
       project: string;
@@ -129,7 +129,7 @@ export interface AppContent {
         INVALID_URL: string;
         TITLE_REQUIRED: string;
         MAX_TITLE: string;
-      }
+      };
     };
   };
   billingPage: {
@@ -162,6 +162,7 @@ export interface AppContent {
     skills: string;
     languages: string;
     project: string;
+    links: string;
   };
   premiumModal: {
     resumeBuilder: string;
@@ -185,7 +186,8 @@ export interface resumePreviewTrans {
   skills: string;
   languages: string;
   project: string;
-};
+  links: string;
+}
 export interface Project {
   title: string;
   subtitle: string;
@@ -215,5 +217,10 @@ export interface Links {
     INVALID_URL: string;
     TITLE_REQUIRED: string;
     MAX_TITLE: string;
-  }
+  };
+}
+
+export interface LinkType{
+  title: string;
+  link: string;
 }
