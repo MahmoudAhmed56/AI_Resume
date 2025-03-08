@@ -9,35 +9,58 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Links } from "@/lib/translationsTypes";
 import { EditorFormProps } from "@/lib/types";
-import { LinkValues, linkSchema } from "@/lib/validation";
+import { LinkValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const LinksForm = ({
   resumeData,
   setResumeData,
+  translation,
 }: EditorFormProps) => {
+  const { editorPage } = translation;
+  const { Links } = editorPage;
+  const linkSchema = z.object({
+    links: z
+      .array(
+        z.object({
+          title: z
+            .string()
+            .trim()
+            .min(1, Links.validation.TITLE_REQUIRED)
+            .max(45, Links.validation.MAX_TITLE),
+          link: z
+            .string()
+            .trim()
+            .min(1, Links.validation.URL_REQUIRED)
+            .url(Links.validation.INVALID_URL),
+        }),
+      )
+      .optional(),
+  });
   const form = useForm<LinkValues>({
     resolver: zodResolver(linkSchema),
     defaultValues: {
-      links: (resumeData.links || []).map(link => ({
+      links: (resumeData.links || []).map((link) => ({
         title: link.title || "", // Ensure required string
-        link: link.link || ""    // Ensure required string
+        link: link.link || "", // Ensure required string
       })),
     },
-  });  
+  });
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        links: (values.links || []).filter((link) => 
-        link?.title?.trim() && link?.link?.trim()
-      ) as { title: string; link: string }[]
+        links: (values.links || []).filter(
+          (link) => link?.title?.trim() && link?.link?.trim(),
+        ) as { title: string; link: string }[],
       });
     });
 
@@ -51,8 +74,8 @@ const LinksForm = ({
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">Links</h2>
-        <p className="text-sm text-muted-foreground">add links</p>
+        <h2 className="text-2xl font-semibold">{Links.title}</h2>
+        <p className="text-sm text-muted-foreground">{Links.subtitle}</p>
       </div>
       <Form {...form}>
         <form className="space-y-3">
@@ -63,6 +86,7 @@ const LinksForm = ({
               index={index}
               remove={remove}
               key={field.id}
+              link={Links}
             />
           ))}
           <div className="flex justify-center">
@@ -75,7 +99,7 @@ const LinksForm = ({
                 })
               }
             >
-              add link
+              {Links.addLinkButton}
             </Button>
           </div>
         </form>
@@ -91,16 +115,17 @@ interface LinkItemItemProps {
   form: UseFormReturn<LinkValues>;
   index: number;
   remove: (index: number) => void;
+  link: Links;
 }
-const LinkItem = ({ form, index, remove }: LinkItemItemProps) => {
+const LinkItem = ({ form, index, remove, link }: LinkItemItemProps) => {
   return (
-    <div className="grid sm500min:flex sm500:grid-cols-2 gap-3">
+    <div className="grid gap-3 sm500:grid-cols-2 sm500min:flex">
       <FormField
         control={form.control}
         name={`links.${index}.title`}
         render={({ field }) => (
           <FormItem className="grow">
-            <FormLabel>title</FormLabel>
+            <FormLabel>{link.titleForm}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -113,7 +138,7 @@ const LinkItem = ({ form, index, remove }: LinkItemItemProps) => {
         name={`links.${index}.link`}
         render={({ field }) => (
           <FormItem className="grow">
-            <FormLabel>link</FormLabel>
+            <FormLabel>{link.link}</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -121,8 +146,14 @@ const LinkItem = ({ form, index, remove }: LinkItemItemProps) => {
           </FormItem>
         )}
       />
-      <Button variant="destructive" className="self-end" type="button" size={"icon"} onClick={() => remove(index)}>
-        <X/>
+      <Button
+        variant="destructive"
+        className="self-end"
+        type="button"
+        size={"icon"}
+        onClick={() => remove(index)}
+      >
+        <X />
       </Button>
     </div>
   );
