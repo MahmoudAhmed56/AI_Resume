@@ -109,7 +109,7 @@ export const languageSchema = z.object({
 export type LanguageValues = z.infer<typeof languageSchema>;
 
 export const linkSchema = z.object({
-  languages: z
+  links: z
     .array(
       z.object({
         title: z.string().trim().min(1).max(45),

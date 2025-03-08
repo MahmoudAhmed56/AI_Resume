@@ -10,7 +10,7 @@ import path from "path";
 
 export const saveResume = async (values: ResumeValues) => {
   const { id } = values;
-  const { photo, workExperiences, educations,languages,projects, ...resumeValues } =
+  const { photo, workExperiences, educations,languages,projects,links, ...resumeValues } =
     resumeSchema.parse(values);
   const { userId } = await auth();
   if (!userId) {
@@ -71,6 +71,12 @@ export const saveResume = async (values: ResumeValues) => {
             ...lang,
           })),
         },
+        links: {
+          deleteMany: {},
+          create: links?.map((link) => ({
+            ...link,
+          })),
+        },
         projects: {
           deleteMany: {},
           create: projects?.map((project) => ({
@@ -108,6 +114,11 @@ export const saveResume = async (values: ResumeValues) => {
         languages: {
           create: languages?.map((exp) => ({
             ...exp,
+          })),
+        },
+        links: {
+          create: links?.map((link) => ({
+            ...link,
           })),
         },
           projects: {
