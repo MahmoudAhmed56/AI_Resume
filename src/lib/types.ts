@@ -13,6 +13,7 @@ export const resumeDataInclude ={
   workExperiences: true,
   educations:true,
   languages:true,
+  links:true,
   projects: {
     include: {
       projectLinks: true
