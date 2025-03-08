@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { formatDate } from "date-fns";
 import { Badge } from "./ui/badge";
 import { BorderStyles } from "@/app/[locale]/(main)/editor/BorderStyleButton";
-import { LinkType, resumePreviewTrans } from "@/lib/translationsTypes";
+import { resumePreviewTrans } from "@/lib/translationsTypes";
 import Link from "./link";
 import {
   RiFacebookBoxFill,
@@ -112,66 +112,77 @@ function LanguagesSections({ resumeData, translation }: ResumeSectionProps) {
 
 function LinksSections({ resumeData, translation }: ResumeSectionProps) {
   const { links, colorHex } = resumeData;
+  const linksNotEmpty = links?.filter(
+    (exp) => Object.values(exp).filter(Boolean).length > 0,
+  );
 
-  // Simplified empty check using optional chaining
-  if (!links?.filter(link => Object.values(link).some(Boolean))?.length) return null;
-
-  // Platform configuration with test functions and icons
-  const platformConfig = [
-    { 
-      test: (link: LinkType) => 
-        link.title.toLowerCase() === 'facebook' || 
-        link.link.includes('facebook.com'),
-      icon: <RiFacebookBoxFill color="#1877F2" />
-    },
-    {
-      test: (link: LinkType) =>
-        ['x', 'twitter'].includes(link.title.toLowerCase()) ||
-        link.link.includes('x.com'),
-      icon: <RiTwitterXFill color="black" />
-    },
-    {
-      test: (link: LinkType) =>
-        link.title.toLowerCase() === 'instagram' ||
-        link.link.includes('instagram.com'),
-      icon: <RiInstagramFill color="#E4405F" />
-    },
-    // Add other platforms following the same pattern...
-  ];
-
-  // Default icon for unknown links
-  const defaultIcon = <RiLink color="gray" />;
-
-  // Helper function to find matching icon
-  const getLinkIcon = (link: LinkType) => {
-    return platformConfig.find(({ test }) => test(link))?.icon || defaultIcon;
-  };
-
+  if (!linksNotEmpty?.length) return null;
   return (
     <>
-      <hr className="border-2" style={{ borderColor: colorHex }} />
+      <hr
+        className="border-2"
+        style={{
+          borderColor: colorHex,
+        }}
+      />
       <div className="space-y-3">
-        <p className="text-lg font-semibold" style={{ color: colorHex }}>
+        <p
+          className="text-lg font-semibold"
+          style={{
+            color: colorHex,
+          }}
+        >
           {translation?.links}
         </p>
-        {links.map((link, index) => {
-          if (!Object.values(link).some(Boolean)) return null;
-          
-          return (
-            <div key={`${link.title}-${index}`} className="break-inside-avoid space-y-1">
-              <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
-                {getLinkIcon(link)}
-                <Link
-                  target="_blank"
-                  href={link.link}
-                  className="text-xs font-semibold text-blue-500 underline"
-                >
-                  {link.title}
-                </Link>
-              </div>
+        {linksNotEmpty.map((link, index) => (
+          <div key={index} className="break-inside-avoid space-y-1">
+            <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
+              {link.title.toLowerCase() === "facebook" ||
+              link.link.includes("facebook.com") ? (
+                <RiFacebookBoxFill size={16} color="#1877F2" /> // Facebook blue
+              ) : link.title.toLowerCase() === "x" ||
+                link.title.toLowerCase() === "twitter" ||
+                link.link.includes("x.com") ? (
+                <RiTwitterXFill size={16} color="black" /> // X/Twitter black
+              ) : link.title.toLowerCase() === "instagram" ||
+                link.link.includes("instagram.com") ? (
+                <RiInstagramFill size={16} color="#E4405F" /> // Instagram pink
+              ) : link.title.toLowerCase() === "whatsapp" ||
+                link.link.includes("whatsapp.com") ||
+                link.link.includes("wa.me") ? (
+                <RiWhatsappFill size={16} color="#25D366" /> // WhatsApp green
+              ) : link.title.toLowerCase() === "telegram" ||
+                link.link.includes("t.me") ||
+                link.link.includes("telegram.org") ? (
+                <RiTelegramFill size={16} color="#0088CC" /> // Telegram blue
+              ) : link.title.toLowerCase() === "github" ||
+                link.link.includes("github.com") ? (
+                <RiGithubFill size={16} color="black" /> // GitHub black
+              ) : link.title.toLowerCase() === "linkedin" ||
+                link.link.includes("linkedin.com") ? (
+                <RiLinkedinBoxFill size={16} color="#0A66C2" /> // LinkedIn blue
+              ) : link.title.toLowerCase() === "youtube" ||
+                link.link.includes("youtube.com") ||
+                link.link.includes("youtu.be") ? (
+                <RiYoutubeFill size={16} color="#FF0000" /> // YouTube red
+              ) : link.title.toLowerCase() === "gmail" ||
+                link.title.toLowerCase() === "email" ||
+                link.link.startsWith("mailto:") ? (
+                <RiMailFill size={16} color="#EA4335" /> // Gmail red
+              ) : (
+                <RiLink size={16} color="gray" /> // Default
+              )}
+              <Link
+                key={index}
+                target="_blank"
+                href={`${link.link}`}
+                className="text-xs font-semibold text-blue-500 underline"
+              >
+                {link.title}
+              </Link>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </>
   );
