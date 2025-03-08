@@ -10,35 +10,34 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { EditorFormProps } from "@/lib/types";
-import { LanguageValues, languageSchema } from "@/lib/validation";
+import { LinkValues, linkSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useEffect } from "react";
 import { UseFormReturn, useFieldArray, useForm } from "react-hook-form";
 
-const LanguagesForm = ({
+const LinksForm = ({
   resumeData,
   setResumeData,
-  translation
 }: EditorFormProps) => {
-  const {editorPage} = translation
-  const {Languages} = editorPage
-  const form = useForm<LanguageValues>({
-    resolver: zodResolver(languageSchema),
+  const form = useForm<LinkValues>({
+    resolver: zodResolver(linkSchema),
     defaultValues: {
-      languages: resumeData.languages || [],
+      links: (resumeData.links || []).map(link => ({
+        title: link.title || "", // Ensure required string
+        link: link.link || ""    // Ensure required string
+      })),
     },
-  });
-  
+  });  
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
       if (!isValid) return;
       setResumeData({
         ...resumeData,
-        languages: (values.languages || []).filter(
-          (lang): lang is Exclude<typeof lang, undefined> => lang !== undefined,
-        ),
+        links: (values.links || []).filter((link) => 
+        link?.title?.trim() && link?.link?.trim()
+      ) as { title: string; link: string }[]
       });
     });
 
@@ -47,24 +46,23 @@ const LanguagesForm = ({
 
   const { fields, append, remove } = useFieldArray({
     control: form.control,
-    name: "languages",
+    name: "links",
   });
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-y-1.5 text-center">
-        <h2 className="text-2xl font-semibold">{Languages.title}</h2>
-        <p className="text-sm text-muted-foreground">{Languages.subtitle}</p>
+        <h2 className="text-2xl font-semibold">Links</h2>
+        <p className="text-sm text-muted-foreground">add links</p>
       </div>
       <Form {...form}>
         <form className="space-y-3">
           {fields.map((field, index) => (
-            <LanguageItem
+            <LinkItem
               id={field.id}
               form={form}
               index={index}
               remove={remove}
               key={field.id}
-              translation={Languages}
             />
           ))}
           <div className="flex justify-center">
@@ -72,12 +70,12 @@ const LanguagesForm = ({
               type="button"
               onClick={() =>
                 append({
-                  language: "",
-                  level: "",
+                  title: "",
+                  link: "",
                 })
               }
             >
-              {Languages.addLanguageButton}
+              add link
             </Button>
           </div>
         </form>
@@ -86,30 +84,23 @@ const LanguagesForm = ({
   );
 };
 
-export default LanguagesForm;
+export default LinksForm;
 
-interface LanguageItemItemProps {
+interface LinkItemItemProps {
   id: string;
-  form: UseFormReturn<LanguageValues>;
+  form: UseFormReturn<LinkValues>;
   index: number;
   remove: (index: number) => void;
-  translation: {
-    title: string;
-    subtitle: string;
-    language: string;
-    level: string;
-    addLanguageButton: string;
 }
-}
-const LanguageItem = ({ form, index, remove,translation }: LanguageItemItemProps) => {
+const LinkItem = ({ form, index, remove }: LinkItemItemProps) => {
   return (
     <div className="grid sm500min:flex sm500:grid-cols-2 gap-3">
       <FormField
         control={form.control}
-        name={`languages.${index}.language`}
+        name={`links.${index}.title`}
         render={({ field }) => (
           <FormItem className="grow">
-            <FormLabel>{translation.language}</FormLabel>
+            <FormLabel>title</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
@@ -119,10 +110,10 @@ const LanguageItem = ({ form, index, remove,translation }: LanguageItemItemProps
       />
       <FormField
         control={form.control}
-        name={`languages.${index}.level`}
+        name={`links.${index}.link`}
         render={({ field }) => (
           <FormItem className="grow">
-            <FormLabel>{translation.level}</FormLabel>
+            <FormLabel>link</FormLabel>
             <FormControl>
               <Input {...field} />
             </FormControl>
