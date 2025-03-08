@@ -108,6 +108,19 @@ export const languageSchema = z.object({
 
 export type LanguageValues = z.infer<typeof languageSchema>;
 
+export const linkSchema = z.object({
+  languages: z
+    .array(
+      z.object({
+        title: z.string().trim().min(1).max(45),
+        link: z.string().trim().min(1).url(),
+      }),
+    )
+    .optional(),
+});
+
+export type LinkValues = z.infer<typeof linkSchema>;
+
 export const skillsSchema = z.object({
   skills: z.array(z.string().trim()).optional(),
 });
