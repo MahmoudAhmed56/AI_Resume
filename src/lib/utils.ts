@@ -44,9 +44,9 @@ export function mapToResumeValues(data:ResumeServerData):ResumeValues {
       startDate: edu.startDate?.toISOString().split("T")[0],
       endDate: edu.endDate?.toISOString().split("T")[0],
     })),
-    languages: data.languages.map((lang) => ({
-      title: lang.language || undefined,
-      link: lang.level || undefined,
+    languages: data.languages?.map((lang) => ({
+      language: lang.language || undefined, 
+      level: lang.level || undefined       
     })) || undefined,
     links: data.links.map((link) => ({
       title: link.title,
