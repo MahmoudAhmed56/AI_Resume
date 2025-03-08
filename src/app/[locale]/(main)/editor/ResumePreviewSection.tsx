@@ -5,6 +5,7 @@ import BorderStyleButton from "./BorderStyleButton";
 import { cn } from "@/lib/utils";
 import { useParams } from "next/navigation";
 import { resumePreviewTrans } from "@/lib/translationsTypes";
+import Print from "./Print";
 
 interface ResumePreviewSectionProps {
   resumeData: ResumeValues;
@@ -30,6 +31,7 @@ const ResumePreviewSection = ({
           }
         />
         <BorderStyleButton borderStyle={resumeData.borderStyle} onChange={(borderStyle)=>setResumeData({ ...resumeData, borderStyle: borderStyle })}/>
+        <Print resume={resumeData} />
       </div>
       <div className="flex w-full justify-center overflow-y-auto bg-secondary p-3">
         <ResumePreview
