@@ -47,6 +47,8 @@ interface ResumeItemProps {
 
 const ResumeItem = ({ resume,translation,resumePreviewTrans }: ResumeItemProps) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  console.log(contentRef,"ResumeItem");
+  
   const reactToPrintFn = useReactToPrint({
     contentRef,
     documentTitle: resume.title || "Resume",

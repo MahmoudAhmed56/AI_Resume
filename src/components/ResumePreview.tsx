@@ -20,6 +20,7 @@ import {
   RiWhatsappFill,
   RiYoutubeFill,
 } from "@remixicon/react";
+import { useRefStore } from "@/hooks/store";
 
 interface ResumePreviewProps {
   resumeData: ResumeValues;
@@ -37,6 +38,18 @@ const ResumePreview = ({
   translation,
 }: ResumePreviewProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  // const sharedRef = useRef<HTMLDivElement>(null);
+  // const setSharedRef = useRefStore((state) => state.containerRef);
+  const {sharedRef,setSharedRef}= useRefStore()
+  useEffect(() => {
+    if (containerRef?.current) {
+      setSharedRef(containerRef);
+    }
+  }, [containerRef?.current]);
+  setSharedRef(containerRef);
+  console.log(sharedRef,"sharedRef");
+  console.log(containerRef,"containerRef");
+  
   const { width } = useDimensions(containerRef);
   return (
     <div
