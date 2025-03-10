@@ -3,6 +3,7 @@ import { steps } from "./steps";
 import { FileUser, PenLine } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface FooterProps {
   currentStep: string;
@@ -28,6 +29,7 @@ const Footer = ({
   isSaving,
   translation
 }: FooterProps) => {
+  const {locale} = useParams()
   const previousStep = steps.find(
     (_, index) => steps[index + 1]?.key === currentStep,
   )?.key;
@@ -67,7 +69,7 @@ const Footer = ({
         </Button>
         <div className="flex items-center gap-3">
           <Button variant="secondary" asChild>
-            <Link href="/resumes">{translation.close}</Link>
+            <Link href={`/${locale}/resumes`}>{translation.close}</Link>
           </Button>
           <p className={cn("text-muted-foreground opacity-0",
           isSaving && "opacity-100"
