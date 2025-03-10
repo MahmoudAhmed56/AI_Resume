@@ -2,7 +2,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logo.png";
-import resumePreview from "@/assets/resume-preview.jpg";
+// import resumePreview from "@/assets/resume-preview.jpg";
+import myArabicResume from "@/assets/My-Arabic-Resume.jpg";
+import myEnglishResume from "@/assets/My-English-Resume.jpg";
 import getTrans from "@/lib/translation";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { auth } from "@clerk/nextjs/server";
@@ -37,7 +39,7 @@ export default async function Home() {
       </div>
       <div>
         <Image
-          src={resumePreview}
+          src={locale === "ar" ? myArabicResume : myEnglishResume}
           alt="Resume preview"
           width={600}
           className="shadow-md lg:rotate-[1.5deg]"

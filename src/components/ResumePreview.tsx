@@ -88,7 +88,7 @@ function LanguagesSections({ resumeData, translation }: ResumeSectionProps) {
           borderColor: colorHex,
         }}
       />
-      <div className="space-y-3">
+      <div className="space-y-3 break-inside-avoid">
         <p
           className="text-lg font-semibold"
           style={{
@@ -135,7 +135,7 @@ function LinksSections({ resumeData, translation }: ResumeSectionProps) {
           {translation?.links}
         </p>
         {linksNotEmpty.map((link, index) => (
-          <div key={index} className="break-inside-avoid space-y-1">
+          <div key={index} className="space-y-1">
             <div className="flex flex-wrap items-center gap-2 text-sm font-semibold">
               {link.title.toLowerCase() === "facebook" ||
               link.link.includes("facebook.com") ? (
