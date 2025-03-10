@@ -11,7 +11,7 @@ import LanguageSwitcher from "./_components/LanguageSwitcher";
 
 const Navbar = async () => {
   const locale = await getCurrentLocale()
-  const {navLogo} = await getTrans(locale)
+  const {navbar} = await getTrans(locale)
   return (
     <header className="shadow-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 p-3">
@@ -24,12 +24,12 @@ const Navbar = async () => {
             className="rounded-full"
           />
           <span className="text-xl font-bold tracking-tight">
-          {navLogo}
+          {navbar.navLogo}
           </span>
         </Link>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <ThemeToggle/>
+          <ThemeToggle {...navbar}/>
           <UserButton/>
         </div>
       </div>

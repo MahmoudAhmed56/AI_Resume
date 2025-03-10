@@ -1,11 +1,16 @@
 {
-  "navLogo": "AI Resume Builder",
+  "navbar": {
+    "navLogo":"Resume Builder",
+    "dark":"Dark",
+    "light":"Light",
+    "system":"System"
+  },
   "home": {
     "firstTitle": "Create the",
     "secondTitle": "Perfect Resume",
     "thirdTitle": "in Minutes",
     "subParagraph1": "Our",
-    "subParagraph2": "AI resume builder",
+    "subParagraph2": "resume builder",
     "subParagraph3": "helps you design a professional resume, even if you're not very smart.",
     "button": "Get started"
   },

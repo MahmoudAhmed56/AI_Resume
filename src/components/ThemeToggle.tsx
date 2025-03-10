@@ -9,8 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { Navbar } from "@/lib/translationsTypes";
 
-export default function ThemeToggle() {
+export default function ThemeToggle(translation:Navbar) {
   const { setTheme } = useTheme();
 
   return (
@@ -24,13 +25,13 @@ export default function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+        {translation.light}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
+        {translation.dark}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
+        {translation.system}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -1,5 +1,10 @@
 export interface AppContent {
-  navLogo: string;
+  navbar: {
+    navLogo: string;
+    dark: string;
+    light: string;
+    system: string;
+  };
   home: {
     firstTitle: string;
     secondTitle: string;
@@ -220,7 +225,13 @@ export interface Links {
   };
 }
 
-export interface LinkType{
+export interface LinkType {
   title: string;
   link: string;
 }
+export interface Navbar {
+  navLogo: string;
+  dark: string;
+  light: string;
+  system: string;
+};
