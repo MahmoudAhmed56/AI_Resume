@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   },
   description:
     "AI Resume Builder is the easiest way to create professional resume that will help you land your dream job.",
+    icons: {
+      icon: '../../assets/favicon.ico', // Default .ico
+    },
 };
 
 export default async function RootLayout({
