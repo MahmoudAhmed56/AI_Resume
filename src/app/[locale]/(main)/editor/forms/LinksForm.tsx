@@ -140,7 +140,7 @@ const LinkItem = ({ form, index, remove, link }: LinkItemItemProps) => {
           <FormItem className="grow">
             <FormLabel>{link.link}</FormLabel>
             <FormControl>
-              <Input {...field} />
+              <Input dir="ltr" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

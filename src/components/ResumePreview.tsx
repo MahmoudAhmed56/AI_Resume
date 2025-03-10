@@ -125,7 +125,7 @@ function LinksSections({ resumeData, translation }: ResumeSectionProps) {
           borderColor: colorHex,
         }}
       />
-      <div className="space-y-3">
+      <div className="space-y-3 break-inside-avoid">
         <p
           className="text-lg font-semibold"
           style={{

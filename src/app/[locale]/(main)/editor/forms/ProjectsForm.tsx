@@ -263,7 +263,7 @@ function ProjectItem({ id, form, index, remove, project }: ProjectItemProps) {
                 <FormItem className="flex-1">
                   <FormLabel>{project.linkURL}</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input dir="ltr" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
