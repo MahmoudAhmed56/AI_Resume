@@ -72,6 +72,7 @@ export default {
 			'sm600': {'max': '600px'},
 			'sm500': {'max': '500px'},
 			'sm400': {'max': '400px'},
+			'sm450': {'max': '450px'},
 			'sm300': {'max': '300px'},
       'sm600min': '600px',
       'sm500min': '500px',

@@ -23,7 +23,7 @@ const Navbar = async () => {
             height={35}
             className="rounded-full"
           />
-          <span className="text-xl font-bold tracking-tight">
+          <span className="text-xl font-bold tracking-tight sm450:hidden">
           {navbar.navLogo}
           </span>
         </Link>
