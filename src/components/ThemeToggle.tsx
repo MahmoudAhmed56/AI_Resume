@@ -11,12 +11,12 @@ import {
 } from "./ui/dropdown-menu";
 import { Navbar } from "@/lib/translationsTypes";
 
-export default function ThemeToggle(translation:Navbar) {
+export default function ThemeToggle({translation,locale}:{translation:Navbar,locale:string}) {
   const { setTheme } = useTheme();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <DropdownMenu dir={locale === "ar" ? "rtl" : "ltr"}>
+      <DropdownMenuTrigger>
         <Button variant="ghost" size="icon">
           <Sun className="size-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute size-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />

@@ -29,7 +29,7 @@ const Navbar = async () => {
         </Link>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <ThemeToggle {...navbar}/>
+          <ThemeToggle translation={navbar}locale={locale}/>
           <UserButton/>
         </div>
       </div>
