@@ -4,6 +4,7 @@ import { Palette } from "lucide-react";
 import { useState } from "react";
 import { Color, ColorChangeHandler, SketchPicker } from "react-color";
 
+
 interface ColorPickerProps {
   color: Color | undefined;
   onChange: ColorChangeHandler;
